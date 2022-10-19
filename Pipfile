@@ -1,5 +1,5 @@
 [packages]
-click = "*"myp
+click = "*"
 
 [dev-packages]
 flake8 = "*"
@@ -8,6 +8,7 @@ pytest = "*"
 freezegun = "*"
 devtools = "*"
 mypy = "*"
+pylint = "*"
 
 [requires]
 python_version = "3.8"

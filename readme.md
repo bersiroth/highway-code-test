@@ -69,6 +69,7 @@ Statistics are stored in a json file (read/write).
 - [ ] gestion des sous text de question
 - [ ] choix du pays france par default, traduction des messages de l'app 
 - [ ] renomer l'app en highway code test cli
+- [ ] update documentation (readme)
 - [ ] passage en DDD
 - [ ] migration data json vers BDD
 - [ ] ajouter un check dynamique de typage https://pydantic-docs.helpmanual.io/

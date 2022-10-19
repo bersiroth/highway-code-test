@@ -1,14 +1,17 @@
+"""
+List all commands.
+"""
+import click
 from question import question_process
 from stats import Stats
-import click
 
 
 @click.group()
 def cli():
-    """CLI application for french highway code practice."""
+    """CLI application for highway code practice."""
 
 
-@cli.command("question", help="Answer to a question.")
+@cli.command("question")
 @click.option(
     "-s",
     "--stop-on-failure",
@@ -19,16 +22,18 @@ def cli():
     help="Set if application must stop on first failure.",
 )
 def question(stop_on_failure):
+    """Answer to a question."""
     question_process(stop_on_failure)
 
 
-@cli.command("stats", help="View statistics.")
+@cli.command("stats")
 @click.option(
     "--reset",
     is_flag=True,
     help="If you want reset your statistics",
 )
 def stats(reset):
+    """View statistics."""
     my_stats = Stats(reset)
     my_stats.render()
 

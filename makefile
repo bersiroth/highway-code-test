@@ -15,7 +15,8 @@ code_style_fix: ## Fix code style
 	$(coding_style_command)
 
 linter: ## Check code linter
-	flake8 --max-line-length $(line_length) src test
+	flake8 --max-line-length $(line_length) --max-complexity 5 src test
+	PYTHONPATH=src pylint --max-line-length $(line_length) src test
 
 test: ## Run test
 	pytest --cache-clear
