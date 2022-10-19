@@ -1,0 +1,38 @@
+[
+    {
+        "id": 2,
+        "question":"Les feux de recul d'un véhicule sont de couleur",
+        "propositions":[
+            "rouge",
+            "blanche"
+        ],
+        "responses":[
+            "B"
+        ],
+        "explication": "Les feux de recul d'un véhicule sont de couleur blanche et vous indiquent que la voiture a enclenché la marche arrière."
+    },
+    {
+        "id": 2,
+        "question":"Les feux de recul d'un véhicule sont de couleur",
+        "propositions":[
+            "rouge",
+            "blanche"
+        ],
+        "responses":[
+            "B"
+        ],
+        "explication": "Les feux de recul d'un véhicule sont de couleur blanche et vous indiquent que la voiture a enclenché la marche arrière."
+    },
+    {
+        "id": 2,
+        "question":"Les feux de recul d'un véhicule sont de couleur",
+        "propositions":[
+            "rouge",
+            "blanche"
+        ],
+        "responses":[
+            "B"
+        ],
+        "explication": "Les feux de recul d'un véhicule sont de couleur blanche et vous indiquent que la voiture a enclenché la marche arrière."
+    }
+]

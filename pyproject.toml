@@ -1,0 +1,19 @@
+[project]
+name = "toto"
+version = "0.0.1"
+authors = [
+  { name="Bernard CARON", email="bernard.caron.pro@gmail.com" },
+]
+requires-python = ">=3.8"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
+]
