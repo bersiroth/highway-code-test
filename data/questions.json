@@ -1,0 +1,1096 @@
+[
+   {
+      "id": 1,
+      "question":"En tant que conducteur avec un permis B, je peux transporter au maximum",
+      "propositions":[
+         "7 passagers",
+         "8 passagers",
+         "9 passagers",
+         "10 passagers"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"En tant que conducteur avec un permis B, je peux transporter au maximum 8 passagers."
+   },
+   {
+      "id": 2,
+      "question":"Les feux de recul d'un véhicule sont de couleur",
+      "propositions":[
+         "Rouge",
+         "Blanche"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Les feux de recul d'un véhicule sont de couleur blanche et vous indiquent que la voiture a enclenché la marche arrière."
+   },
+   {
+      "id": 3,
+      "question":"Hors agglomération, avec une acuité visuelle de 10/10 je peux lire un panneau à partir de",
+      "propositions":[
+         "25m",
+         "50m",
+         "100m",
+         "150m"
+      ],
+      "responses":[
+         "D"
+      ],
+      "explication":"La taille des panneaux varie si je suis en agglomération ou hors agglomération. En effet, les panneaux situés hors agglomération sont deux fois plus grands que les panneaux situés en agglomération. Ainsi, en agglomération, je peux lire un panneau à partir de 50 mètres, et hors agglomération à partir de 150 mètres."
+   },
+   {
+      "id": 4,
+      "question":"S'il n'est pas possible d'utiliser les trottoirs, les piétons peuvent emprunter la route",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"S'il n'est pas possible d'utiliser les trottoirs, les piétons peuvent emprunter la route en prenant les précautions nécessaires."
+   },
+   {
+      "id": 5,
+      "question":"Pour pouvoir conduire, l'acuité visuelle de l'ensemble des deux yeux doit être au minimum de",
+      "propositions":[
+         "5/10",
+         "7/10",
+         "8/10",
+         "10/10"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Pour pouvoir conduire, l'acuité visuelle de l'ensemble des deux yeux doit être au minimum de 5/10."
+   },
+   {
+      "id": 6,
+      "question":"À l'arrière, le chargement d'un véhicule ou d'une remorque ne doit pas dépasser l'extrémité de plus de",
+      "propositions":[
+         "1m",
+         "2m",
+         "3m",
+         "4m"
+      ],
+      "responses":[
+         "C"
+      ],
+      "explication":"À l'arrière, le chargement d'un véhicule ou d'une remorque ne doit pas dépasser l'extrémité de plus de 3 mètres. Il doit être signalé par un feu rouge et un dispositif rétroréfléchissant rouge dès qu'il atteint 1 mètre de dépassement à l'arrière."
+   },
+   {
+      "id": 7,
+      "question":"Le système \"stop and start\" sert à",
+      "propositions":[
+         "Couper automatiquement le moteur à l'arrêt",
+         "Réduire le bruit et la pollution",
+         "Contrôler l'autoradio",
+         "Empêcher le blocage des roues lors du freinage"
+      ],
+      "responses":[
+         "A",
+         "B"
+      ],
+      "explication":"Le système \"stop and start\" sert à couper automatiquement le moteur à l'arrêt et permet donc de réduire le bruit et la pollution."
+   },
+   {
+      "id": 8,
+      "question":"Afin de vérifier qu'une victime inconsciente respire, je peux essayer de sentir de l'air à l'expiration",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"En cas de perte de connaissance, je peux vérifier si la victime respire en sentant l'air à l'expiration, en regardant si le ventre et la poitrine se soulèvent ou bien encore en écoutant des sons provoqués par la respiration."
+   },
+   {
+      "id": 9,
+      "question":"Afin de vérifier qu'une victime inconsciente respire, regarder si le ventre et la poitrine se soulèvent",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"En cas de perte de connaissance, je peux vérifier si la victime respire en sentant l'air à l'expiration, en regardant si le ventre et la poitrine se soulèvent ou bien encore en écoutant des sons provoqués par la respiration."
+   },
+   {
+      "id": 10,
+      "question":"Sur une place de livraison, je peux m'arrêter",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Le marquage sur le trottoir d'une place livraison est une ligne jaune discontinue, je peux donc m'arrêter sur cette place."
+   },
+   {
+      "id": 11,
+      "question":"La cause principale de l'éclatement d'un pneu est",
+      "propositions":[
+         "L'usure Le sous-gonflage",
+         "Le surgonflage"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"La cause principale de l'éclatement d'un pneu est le sous-gonflage. Cela entraîne l'échauffement du pneu puis son éclatement."
+   },
+   {
+      "id": 12,
+      "question":"Le verglas se forme principalement",
+      "propositions":[
+         "En ville",
+         "Dans les endroits humides"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Le verglas se forme principalement dans les endroits humides comme les forêts, les ponts et les vallées."
+   },
+   {
+      "id": 13,
+      "question":"Je suis daltonien, j'ai le droit de conduire un véhicule",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"La non-perception des couleurs (ex : daltonisme) n'interdit pas la conduite d'un véhicule."
+   },
+   {
+      "id": 14,
+      "question":"La distance d'arrêt correspond à la distance parcourue pendant le temps de réaction additionnée à la distance parcourue pendant le temps de freinage",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"La distance d'arrêt correspond à la distance parcourue pendant le temps de réaction additionnée à la distance parcourue pendant le temps de freinage."
+   },
+   {
+      "id": 15,
+      "question":"Le siège homologué n'est plus obligatoire pour les enfants mesurant plus de",
+      "propositions":[
+         "80",
+         "100",
+         "135"
+      ],
+      "responses":[
+         "C"
+      ],
+      "explication":"Le siège homologué n'est plus obligatoire pour les enfants mesurant plus de 135 cm."
+   },
+   {
+      "id": 16,
+      "question":"Je suis un conducteur expérimenté, je risque une perte de 6 points sur mon permis de conduire si je dépasse",
+      "propositions":[
+         "0.25 g d'alcool pur par litre de sang",
+         "0.5 g d'alcool pur par litre de sang",
+         "0.25 mg d'alcool pur par litre d'air expiré",
+         "0.5 mg d'alcool pur par litre d'air expiré"
+      ],
+      "responses":[
+         "B",
+         "C",
+         "D"
+      ],
+      "explication":"En tant que conducteur expérimenté, je ne dois pas conduire si j'ai plus de 0.25 mg d'alcool pur par litre d'air expiré ou 0.5 g d'alcool pur par litre de sang."
+   },
+   {
+      "id": 17,
+      "question":"Le port de la ceinture de sécurité est obligatoire",
+      "propositions":[
+         "A l'avant uniquement",
+         "A l’arrière uniquement",
+         "A l'avant et a l’arrière"
+      ],
+      "responses":[
+         "C"
+      ],
+      "explication":"Le port de la ceinture de sécurité est obligatoire à l'avant et à l'arrière du véhicule."
+   },
+   {
+      "id": 18,
+      "question":"En hiver, je peux remplacer mon liquide de lave-glace par de l'eau",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Il est fortement déconseillé de remplacer le liquide de lave-glace par de l'eau, surtout en hiver, car l'eau n'est pas traitée contre le gel. Un liquide de lave glace hiver traité contre le gel est à privilégier."
+   },
+   {
+      "id": 19,
+      "question":"À certains feux tricolores, les cyclistes ont le droit de passer même si le feu est rouge",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"À certains feux, un panonceau peut autoriser les cyclistes à passer au feu rouge, sous réserve qu'ils cèdent la priorité aux autres usagers."
+   },
+   {
+      "id": 20,
+      "question":"L'intervalle de sécurité entre deux véhicules doit être au minimum de",
+      "propositions":[
+         "2s",
+         "3s",
+         "4s"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"L'intervalle de sécurité entre deux véhicules doit être au minimum de 2 secondes."
+   },
+   {
+      "id": 21,
+      "question":"Les facteurs favorisant l'aquaplaning sont",
+      "propositions":[
+         "Le mauvais état de la structure des pneumatiques",
+         "La mauvaise pression des pneumatiques",
+         "L'absence d'essuie-glaces automatiques",
+         "La vitesse"
+      ],
+      "responses":[
+         "A",
+         "B",
+         "C"
+      ],
+      "explication":"La pression et l'état des pneumatiques, ainsi que la vitesse, jouent un rôle important dans le risque d'aquaplaning. Par exemple, des pneus usés empêchent l'évacuation de l'eau entrainant le phénomène d'aquaplaning."
+   },
+   {
+      "id": 22,
+      "question":"Je peux conduire avec un casque audio",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Il est interdit de conduire avec des oreillettes, des écouteurs ou un casque audio. Ces objets perturbent l'attention du conducteur."
+   },
+   {
+      "id": 23,
+      "question":"Un coffre de toit augmente la consommation du véhicule d'environ",
+      "propositions":[
+         "3%",
+         "15%",
+         "30%",
+         "50%"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Un coffre de toit augmente la consommation du véhicule de 10 à 15%."
+   },
+   {
+      "id": 24,
+      "question":"Plus un virage est serré, plus la force centrifuge est importante",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Plus un virage est serré, plus la force centrifuge est importante. La force centrifuge est la sensation d'éjection du conducteur ou d'un passager lors d'un virage."
+   },
+   {
+      "id": 25,
+      "question":"Un excès de stress augmente les risques d'accident sur la route",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Le stress augmente les risques d'accident sur la route en agissant directement sur le comportement du conducteur."
+   },
+   {
+      "id": 26,
+      "question":"L'ABS est une aide à la conduite pour",
+      "propositions":[
+         "Allumer automatiquement ses feux",
+         "Réguler sa vitesse",
+         "Limiter sa vitesse",
+         "Eviter le blocage des roues lors du freinage"
+      ],
+      "responses":[
+         "C"
+      ],
+      "explication":"Le véhicule devient impossible à diriger si les roues se bloquent au freinage. Le système antiblocage ABS détecte la tendance au blocage des roues et réduit la pression de freinage de façon ciblée."
+   },
+   {
+      "id": 27,
+      "question":"Le constat amiable fait partie des documents obligatoires à avoir dans sa voiture",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Le constat amiable ne fait pas partie des documents obligatoires à avoir dans sa voiture mais il est tout de même fortement conseillé d'en posséder un."
+   },
+   {
+      "id": 28,
+      "question":"Une voiture à boite automatique libère en partie le conducteur des contraintes techniques",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Une voiture à boite automatique libère en partie le conducteur des contraintes techniques car le changement des vitesses se fait automatiquement."
+   },
+   {
+      "id": 29,
+      "question":"La remorque devra posséder son propre numéro d'immatriculation si sa MMTA (anciennement PTAC) est supérieure à 500 kg",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Si la MMTA de votre remorque est supérieure à 500 kg, elle devra posséder son propre numéro d'immatriculation"
+   },
+   {
+      "id": 30,
+      "question":"Une chaussée mouillée multiplie par deux",
+      "propositions":[
+         "La distance de visibilité",
+         "Le temps de réaction",
+         "La distance de freinage"
+      ],
+      "responses":[
+         "C"
+      ],
+      "explication":"Une chaussée mouillée multiplie par deux la distance de freinage. La voiture mettra plus de temps pour s'arrêter, d'où la nécessité de réduire sa vitesse en cas de chaussée mouillée."
+   },
+   {
+      "id": 31,
+      "question":"Sur un véhicule de tourisme, les feux obligatoires sont",
+      "propositions":[
+         "2 feux de croisement",
+         "2 feux de brouillard avant",
+         "2 feux de route",
+         "1 feu de brouillard arrière"
+      ],
+      "responses":[
+         "A",
+         "C",
+         "D"
+      ],
+      "explication":"Les feux de brouillard avant ne sont pas obligatoires. Par contre, les feux de croisement, de route et le feu de brouillard arrière gauche sont obligatoires."
+   },
+   {
+      "id": 32,
+      "question":"En cas d'alcoolémie positive, ma voiture peut être immobilisée jusqu'à ce qu'un autre conducteur sobre puisse prendre le volant",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"En cas d'alcoolémie positive, ma voiture est immobilisée jusqu'à ce qu'un autre conducteur sobre prenne le volant."
+   },
+   {
+      "id": 33,
+      "question":"Une borne d'appel d'urgence indique automatiquement votre position aux services d'urgence",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Une borne d'appel d'urgence indique automatiquement votre position aux services d'urgence. Sur autoroute, elles sont disposées tous les 2 km.\n"
+   },
+   {
+      "id": 34,
+      "question":"L'usure des pneumatiques dépend",
+      "propositions":[
+         "De ses motifs",
+         "De la pression de gonflage",
+         "Du style de la conduite",
+         "De la charge du véhicule"
+      ],
+      "responses":[
+         "B",
+         "C",
+         "D"
+      ],
+      "explication":"L'usure des pneumatiques dépend à la fois du style de la conduite, de la charge du véhicule et de la pression de gonflage."
+   },
+   {
+      "id": 35,
+      "question":"Le premier facteur d'accident mortel au volant est",
+      "propositions":[
+         "La drogue",
+         "La vitesse",
+         "L'alcool",
+         "La somnolence"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Le premier facteur d'accident mortel au volant est la vitesse, suivi par l'alcool puis la drogue."
+   },
+   {
+      "id": 36,
+      "question":"Sur le tableau de bord, les voyants orange alertent le conducteur d'un problème urgent",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Ce sont les voyants rouges qui alertent le conducteur d'un problème urgent. Les voyants orange servent d'aide-mémoire (ex : alerte niveau carburant)."
+   },
+   {
+      "id": 37,
+      "question":"Rouler à 90 km/h me fait parcourir environ",
+      "propositions":[
+         "17m/s",
+         "27m/s",
+         "37m/s",
+         "47m/s"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Rouler à 90 km/h me fait parcourir environ 27 m/s. Pour le calculer, il suffit de multiplier le chiffre des dizaines (9) par 3."
+   },
+   {
+      "id": 38,
+      "question":"Je circule sur une route avec une visibilité inférieure à 50 m, la vitesse maximale autorisée est de",
+      "propositions":[
+         "30 km/h",
+         "50 km/h",
+         "70 km/h",
+         "80 km/h"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Lorsque la visibilité est inférieure à 50 m, la vitesse est limitée à 50 km/h peu importe la route sur laquelle vous vous trouvez."
+   },
+   {
+      "id": 39,
+      "question":"Un conducteur en circulation qui téléphone en tenant le téléphone à la main risque une perte de",
+      "propositions":[
+         "2 points",
+         "3 points",
+         "4 points",
+         "6 points"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"L'usage du téléphone au volant est sanctionné par le retrait de 3 points sur le permis."
+   },
+   {
+      "id": 40,
+      "question":"En général, sur le tableau de bord, les voyants rouges alertent le conducteur d'un problème urgent",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Dès l’allumage d’un voyant rouge, le conducteur doit s’arrêter le plus rapidement possible (excepté pour certains voyants : frein à main, feux de détresse, batterie qui ne charge plus). Les voyants rouges signalent une alerte ou un problème urgent."
+   },
+   {
+      "id": 41,
+      "question":"Sur le lieu d'un accident je peux contacter le SAMU au",
+      "propositions":[
+         "15",
+         "18"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Le 15 permet d'appeler le SAMU et le 18 les sapeurs-pompiers."
+   },
+   {
+      "id": 42,
+      "question":"Il est conseillé de faire une pause au moins toutes les",
+      "propositions":[
+         "Heures",
+         "Deux heures",
+         "Trois heures",
+         "Quatre heures"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Il est conseillé de faire une pause au moins toutes les deux heures."
+   },
+   {
+      "id": 43,
+      "question":"Les médicaments vendus sans ordonnance peuvent avoir des effets indésirables sur la conduite",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Même les médicaments vendus sans ordonnance peuvent avoir des effets indésirables sur la conduite. Il est important de toujours regarder les pictogrammes présents sur leurs boites."
+   },
+   {
+      "id": 43,
+      "question":"Si je suis engagé sur un passage à niveau et que les barrières se sont fermées",
+      "propositions":[
+         "Je klaxonne pour prévenir le conducteur du train que je suis coincé",
+         "J'avance et je brise la barrière",
+         "Je sors de mon véhicule et je m'éloigne du passage à niveau"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Les barrières sont conçues pour plier afin de ne pas immobiliser un automobiliste sur le passage à niveau. Dans cette situation d'urgence, j'avance et je brise la barrière."
+   },
+   {
+      "id": 44,
+      "question":"Pour un jeune conducteur, la limite d'alcoolémie pour conduire est de",
+      "propositions":[
+         "0,20 g/l de sang",
+         "0,50 g/l de sang",
+         "0,80 g/l de sang",
+         "1,00 g/l de sang"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Pour un jeune conducteur, la limite d'alcoolémie pour conduire est de 0,20 g/l de sang."
+   },
+   {
+      "id": 45,
+      "question":"L'absence de clignotant dans un carrefour à sens giratoire est une source d'accident",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"L'absence de clignotant dans un rond-point est une source d'accident. Mettre son clignotant permet de communiquer avec les autres conducteurs et d'exprimer son intention."
+   },
+   {
+      "id": 46,
+      "question":"Pour placer un siège bébé à l'avant du véhicule dos à la route, je dois obligatoirement désactiver l'airbag côté passager",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Pour placer un siège bébé à l'avant du véhicule dos à la route, je dois obligatoirement désactiver l'airbag côté passager. Sa non-désactivation pourrait entrainer de graves blessures chez l'enfant."
+   },
+   {
+      "id": 47,
+      "question":"Je viens de perdre un point sur mon permis. Je pourrai le récupérer si je ne fais pas d'autres infractions pendant",
+      "propositions":[
+         "2 mois",
+         "6 mois",
+         "1 an"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Un point perdu se récupère 6 mois après l'infraction, si aucune autre infraction n'est commise durant ce temps."
+   },
+   {
+      "id": 48,
+      "question":"L'organisme met plus de temps à éliminer le cannabis que l'alcool",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"L'organisme met beaucoup plus de temps à éliminer le cannabis que l'alcool. 3 jours pour éliminer un joint de cannabis contre 3 heures pour un verre d'alcool."
+   },
+   {
+      "id": 49,
+      "question":"Je peux être dispensé du port de la ceinture de sécurité si je dispose d'un certificat médical",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Un certificat médical est obligatoire pour être dispensé de ceinture de sécurité."
+   },
+   {
+      "id": 50,
+      "question":"Dans un tunnel, allumer les feux de croisement est",
+      "propositions":[
+         "Conseillé",
+         "Obligatoire"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Dans un tunnel, il est obligatoire d'allumer ses feux de croisement."
+   },
+   {
+      "id": 51,
+      "question":"Le chargement d'un véhicule à l'avant peut dépasser l'aplomb du véhicule",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"À l'avant, le chargement ne doit en aucun cas dépasser l'aplomb du véhicule."
+   },
+   {
+      "id": 52,
+      "question":"Le temps de réaction est ce qui se passe mentalement avant d'agir, après avoir perçu un indice",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Le temps de réaction est le temps qui se passe entre la perception d'un évènement et notre réaction."
+   },
+   {
+      "id": 53,
+      "question":"Quand un piéton s'engage sur la chaussée, je dois lui céder le passage",
+      "propositions":[
+         "Uniquement s'il est sur un passage piéton",
+         "Tout le temps",
+         "Uniquement s'il est sur un passage piéton ou qu'aucun passage piéton n'est présent à moins de 50 mètres"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Lorsqu'un piéton s'engage sur la chaussée, il devient prioritaire et je dois lui céder le passage."
+   },
+   {
+      "id": 54,
+      "question":"Il faut environ trois heures pour éliminer un verre d'alcool",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Il faut environ trois heures à l'organisme pour éliminer un verre d'alcool."
+   },
+   {
+      "id": 55,
+      "question":"La technologie Bluetooth intégrée au véhicule est la seule solution pour téléphoner en conduisant",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"La technologie Bluetooth intégrée au véhicule est la seule solution pour téléphoner en conduisant. Les casques, écouteurs et oreillettes sont interdits."
+   },
+   {
+      "id": 56,
+      "question":"Les accessoires obligatoires dans la voiture sont",
+      "propositions":[
+         "Une roue de secours",
+         "Un gilet rétroréfléchissant",
+         "Un test d'alcoolémie",
+         "Un triangle de présignalisation"
+      ],
+      "responses":[
+         "B",
+         "D"
+      ],
+      "explication":"Les accessoires obligatoires dans la voiture sont le triangle de présignalisation et le gilet rétroréfléchissant."
+   },
+   {
+      "id": 57,
+      "question":"La valeur de la pression des pneus dépend de la charge du véhicule",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Lorsque le véhicule est chargé, vous devez augmenter la pression des pneumatiques."
+   },
+   {
+      "id": 58,
+      "question":"Je dois changer mes essuie-glaces en moyenne",
+      "propositions":[
+         "Une fois par mois",
+         "Une fois par an",
+         "Une fois tous les 5 ans"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Les lamelles des essuie-glaces sont en caoutchouc, je dois changer mes essuie-glaces en moyenne une fois par an."
+   },
+   {
+      "id": 59,
+      "question":"Le régulateur de vitesse permet de diminuer la consommation en carburant",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Le régulateur de vitesse évite les décélérations et accélérations et permet ainsi de diminuer la consommation en carburant."
+   },
+   {
+      "id": 60,
+      "question":"Une sieste de 20 minutes permet de récupérer 50% de ses capacités physiques",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Une sieste de 20 minutes permet de récupérer 50% de ses capacités physiques. Il est préférable de vous arrêter dès les premiers signes de fatigue."
+   },
+   {
+      "id": 61,
+      "question":"Je viens de prendre un médicament possédant le pictogramme niveau 3. Je peux prendre ma voiture pour me rendre chez le pharmacien",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"le pictogramme niveau 3 indique que le médicament peut nuire à la vigilance du conducteur. Je ne peux donc en aucun cas prendre ma voiture et l'avis d'un médecin est indispensable pour la reprise."
+   },
+   {
+      "id": 62,
+      "question":"Après un accident, afin d'alerter les secours, je peux utiliser mon téléphone portable",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"test"
+   },
+   {
+      "id": 63,
+      "question":"La distance d'arrêt dépend",
+      "propositions":[
+         "De la vitesse du véhicule",
+         "De la vigilance du conducteur",
+         "De l'expérience du conducteur",
+         "De l'adhérence de la chaussée"
+      ],
+      "responses":[
+         "A",
+         "B",
+         "D"
+      ],
+      "explication":"La distance d'arrêt dépend de la vigilance du conducteur (son temps de réaction), de l'adhérence de la chaussée, ainsi que de la vitesse du véhicule."
+   },
+   {
+      "id": 64,
+      "question":"Un enfant n’a plus le droit de rouler à vélo sur le trottoir à partir de",
+      "propositions":[
+         "8 ans",
+         "10 ans",
+         "12 ans",
+         "14 ans"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Un enfant de moins de 8 ans peut rouler à vélo sur les trottoirs, à condition de rouler lentement et de ne pas gêner les autres usagers."
+   },
+   {
+      "id": 65,
+      "question":"La pression des pneus doit être contrôlée au moins",
+      "propositions":[
+         "Une fois par semaine",
+         "Une fois par mois",
+         "Une fois par an"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"La pression des pneus doit être contrôlée au moins une fois par mois."
+   },
+   {
+      "id": 66,
+      "question":"Je roule à 68 km/h alors que la vitesse est limitée à 50 km/h. je risque une perte de",
+      "propositions":[
+         "1 point",
+         "2 points",
+         "3 points",
+         "4 points"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Pour un excès de vitesse de moins de 20 km/h, je risque une perte de 1 point."
+   },
+   {
+      "id": 67,
+      "question":"Le système d'avertisseur d'angle mort me permet de ne pas contrôler mes angles morts",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Le système d'avertisseur d'angle mort est une aide à la conduite qui ne doit pas remplacer les contrôles du conducteur."
+   },
+   {
+      "id": 68,
+      "question":"Dans un tunnel, pour être alerté en temps réel d'un quelconque problème, je peux écouter la radio en utilisant la fréquence",
+      "propositions":[
+         "96.6",
+         "101.9",
+         "106.8",
+         "107.7"
+      ],
+      "responses":[
+         "D"
+      ],
+      "explication":"La fréquence 107.7 diffuse des messages en temps réel sur la sécurité et peut être écoutée dans la majorité des tunnels."
+   },
+   {
+      "id": 69,
+      "question":"À l'arrêt, le champ visuel d'un conducteur est de",
+      "propositions":[
+         "180 degrés",
+         "360 degrés"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"À l'arrêt, le champ visuel d'un conducteur est de 180 degrés."
+   },
+   {
+      "id": 70,
+      "question":"Avec une MMTA (anciennement PTAC) de l'ensemble de 4000 kg, le permis B suffit pour tracter une remorque d'un poids maximum de",
+      "propositions":[
+         "550 kg",
+         "750 kg",
+         "900 kg",
+         "1000 kg"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Avec une MMTA de l'ensemble de 4000 kg, le permis B suffit pour tracter une remorque d'un poids maximum de 750 kg. Il est possible de tracter une remorque de plus de 750 kg si la MMTA de l'ensemble est inférieure ou égale à 3500 kg."
+   },
+   {
+      "id": 71,
+      "question":"Le traitement des informations (ou temps de réaction) du conducteur dure en moyenne 1 seconde durant la conduite",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Le temps de réaction est d'en moyenne 1 seconde lorsque nous conduisons."
+   },
+   {
+      "id": 72,
+      "question":"J'effectue un créneau en",
+      "propositions":[
+         "Marche avant",
+         "Marche arrière"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Un créneau s'effectue en marche arrière."
+   },
+   {
+      "id": 73,
+      "question":"Sur le tableau de bord, les voyants verts ou bleus indiquent les feux qui sont allumés",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Les voyants verts ou bleus indiquent les feux qui sont allumés."
+   },
+   {
+      "id": 74,
+      "question":"Je suis le dernier de ma voie dans un embouteillage. Il est conseillé",
+      "propositions":[
+         "D'allumer les feux anti-brouillards",
+         "De laisser les feux de stop allumés",
+         "D'allumer les feux de détresse"
+      ],
+      "responses":[
+         "C"
+      ],
+      "explication":"Lorsque je suis le dernier de ma voie dans un embouteillage, allumer mes feux de détresse permettra d'avertir les usagers arrivant derrière moi. Ils pourront ainsi plus facilement anticiper le freinage."
+   },
+   {
+      "id": 75,
+      "question":"L'aide au freinage d'urgence (A.F.U) permet",
+      "propositions":[
+         "D'éviter le blocage des roues lors du freinage",
+         "De freiner à la place du conducteur",
+         "De renforcer le freinage en cas d'urgence"
+      ],
+      "responses":[
+         "D"
+      ],
+      "explication":"L'AFU permet de renforcer le freinage du conducteur en cas d'urgence en permettant d'atteindre instantanément la pression de freinage maximale."
+   },
+   {
+      "id": 76,
+      "question":"Il pleut, la route est limitée a 70 km/h, la vitesse maximale à laquelle je peux rouler est de",
+      "propositions":[
+         "40 km/h",
+         "50 km/h",
+         "60 km/h",
+         "70 km/h"
+      ],
+      "responses":[
+         "D"
+      ],
+      "explication":"Sur une route limitée à 70 km/h, la vitesse maximale autorisée n'est pas diminuée s'il pleut."
+   },
+   {
+      "id": 77,
+      "question":"L'assurance \"Responsabilité civile\" est la seule assurance obligatoire",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"En tant que conducteur vous devez obligatoirement souscrire à une assurance. Seule l'assurance \"Responsabilité civile\" est obligatoire et permet de couvrir les dégâts (matériels ou physiques) causés à un tiers."
+   },
+   {
+      "id": 78,
+      "question":"En cas d'accident, je dois (dans l'ordre)",
+      "propositions":[
+         "Secourir, Alerter, Protéger",
+         "Protéger, Alerter, Secourir",
+         "Alerter, Protéger, Secourir"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"En cas d'accident, je dois, dans l'ordre : Protéger la zone de l’accident et la (ou les) victime(s), Alerter les secours puis Secourir la victime."
+   },
+   {
+      "id": 79,
+      "question":"Je peux modifier le recto d'un constat amiable après la signature des deux conducteurs",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Il est interdit de modifier le recto du constat amiable après signatures des deux parties."
+   },
+   {
+      "id": 80,
+      "question":"Le premier contrôle technique doit être effectué avant le 4ème anniversaire de la mise en circulation de votre véhicule",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"Le premier contrôle technique doit être effectué avant le 4ème anniversaire de la mise en circulation du véhicule."
+   },
+   {
+      "id": 81,
+      "question":"Pour être en conformité avec la réglementation, la limite à ne pas dépasser pour le bruit de mon véhicule est de",
+      "propositions":[
+         "34 dB",
+         "74 dB",
+         "114 dB",
+         "134 dB"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Pour être en conformité avec la réglementation, la limite à ne pas dépasser pour le bruit de mon véhicule est de 74 dB."
+   },
+   {
+      "id": 82,
+      "question":"Mon véhicule est équipé de coussins gonflables (airbags), le port de la ceinture est facultatif",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"Même avec un véhicule équipé d'airbags, le port de la ceinture est obligatoire."
+   },
+   {
+      "id": 83,
+      "question":"L'usage du kit main libre en conduisant est",
+      "propositions":[
+         "Autorisé",
+         "Interdit"
+      ],
+      "responses":[
+         "B"
+      ],
+      "explication":"L'usage du kit main libre est interdit. La technologie Bluetooth intégrée au véhicule est la seule solution pour téléphoner en conduisant."
+   },
+   {
+      "id": 99,
+      "question":"toto",
+      "propositions":[
+         "Oui",
+         "Non"
+      ],
+      "responses":[
+         "A"
+      ],
+      "explication":"toto"
+   }
+]
