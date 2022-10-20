@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  code-style:
+  Code-style:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -18,7 +18,22 @@ jobs:
       run: |
         make code-style
 
-  linter:
+  Unused-code:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'
+        cache: 'pip'
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+    - name: Check code style
+      run: |
+        make unused-code
+
+  Linter:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -33,7 +48,7 @@ jobs:
       run: |
         make linter
 
-  type-check:
+  Type-check:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -51,7 +66,7 @@ jobs:
       run: |
         make test
 
-  test:
+  Test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3

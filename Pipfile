@@ -9,6 +9,7 @@ freezegun = "*"
 devtools = "*"
 mypy = "*"
 pylint = "*"
+autoflake = "*"
 
 [requires]
 python_version = "3.8"
