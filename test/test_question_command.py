@@ -1,17 +1,24 @@
 """
 Test question logic
 """
+from typing import Optional
+
 from test.command_helper import run_command_with_fixture
 from click.testing import Result
 
 
-def run_question_command(input_sequence: str = "a\nn\n", stop_on_failure: bool = False) -> Result:
+def run_question_command(
+    input_sequence: str = "a\nn\n", stop_on_failure: bool = False, question_id: Optional[int] = None
+) -> Result:
     """
     Run question command with option
     """
     args = []
     if stop_on_failure:
         args.append("--stop-on-failure")
+    if question_id:
+        args.append("--id")
+        args.append(str(question_id))
     return run_command_with_fixture("question", args, input_sequence)
 
 
@@ -23,10 +30,9 @@ def test_question_command_with_correct_answer() -> None:
     input_sequence = "b\nn\n"
     # When : I run question command with input
     result = run_question_command(input_sequence)
-    print(result)
     # Then : Command has no error and I have a good output
     assert result.exit_code == 0
-    assert "(Question 2) : Les feux de recul d'un véhicule sont de couleur ?" in result.output
+    assert "Les feux de recul d'un véhicule sont de couleur ?" in result.output
     assert "[A] rouge           [B] blanche" in result.output
     assert "Enter your answer with label letter separated by comma. (Ex: A,C): b" in result.output
     assert "Correct !" in result.output
@@ -131,3 +137,17 @@ def test_question_command_with_all_questions() -> None:
     assert "Total correct answer    | 2" in result.output
     assert "Total wrong answer      | 1" in result.output
     assert "Congratulation ! You have answer to all questions" in result.output
+
+
+def test_question_command_with_question_id() -> None:
+    """
+    We can select question id
+    """
+    # Given : I have question id
+    question_id = 2
+    # When : I run question command with question id
+    result = run_question_command(question_id=question_id)
+    # Then : Command has no error and I have the good question in output
+    assert result.exit_code == 0
+    assert "(Question 2) : Les feux de recul d'un véhicule sont de couleur ?" in result.output
+    assert "New question ? [y/n]: y" not in result.output

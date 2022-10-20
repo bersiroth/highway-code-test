@@ -2,6 +2,7 @@
 List all commands.
 """
 import click
+
 from question import question_process
 from stats import Stats
 
@@ -21,9 +22,15 @@ def cli():
     show_default=True,
     help="Set if application must stop on first failure.",
 )
-def question(stop_on_failure):
+@click.option(
+    "--id",
+    "question_id",
+    type=int,
+    help="Select question by id.",
+)
+def question(stop_on_failure, question_id):
     """Answer to a question."""
-    question_process(stop_on_failure)
+    question_process(stop_on_failure, question_id)
 
 
 @cli.command("stats")
