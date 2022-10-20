@@ -64,7 +64,7 @@ Statistics are stored in a json file (read/write).
 - [x] ajouter un custom debug https://python-devtools.helpmanual.io/
 - [x] ajouter un check static de typage http://mypy-lang.org/
 - [x] creation du repo
-- [ ] ci github action
+- [x] ci github action
 - [ ] choisir l'id d'une question
 - [ ] gestion des sous text de question
 - [ ] choix du pays france par default, traduction des messages de l'app 
