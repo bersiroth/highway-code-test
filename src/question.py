@@ -22,7 +22,7 @@ class Question:
     __propositions: List[str]
     __responses: List[str]
     __explication: str
-    __labels: Tuple[str] = ("A", "B", "C", "D")
+    __labels: Tuple[str, str, str, str] = ("A", "B", "C", "D")
 
     def render(self) -> None:
         """

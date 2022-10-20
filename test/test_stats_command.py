@@ -11,6 +11,7 @@ def run_stats_command(with_question: bool = False, question_input: str = "b\nn\n
     """
     Run stats command with option
     """
+
     def callback(runner: CliRunner):
         if with_question:
             runner.invoke(cli, ["question"], input=question_input)

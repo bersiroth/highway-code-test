@@ -1,0 +1,28 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'
+        cache: 'pip'
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+    - name: Check code style
+      run: |
+        make code_style
+    - name: Check code linter
+      run: |
+        make linter
+    - name: Run static type checking
+      run: |
+        make type-check
+    - name: Run test
+      run: |
+        make test

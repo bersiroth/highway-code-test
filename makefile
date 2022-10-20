@@ -22,7 +22,7 @@ test: ## Run test
 	pytest --cache-clear
 
 type-check: ## Run static type checking
-	MYPYPATH=src mypy --namespace-packages --explicit-package-bases src/
+	MYPYPATH=src mypy --namespace-packages --explicit-package-bases src test
 
 ci: code_style linter type-check test ## Run CI test
 
