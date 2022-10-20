@@ -66,7 +66,7 @@ Statistics are stored in a json file (read/write).
 - [x] creation du repo
 - [x] ci github action
 - [x] choisir l'id d'une question
-- [ ] gestion des sous text de question
+- [x] gestion des sous text de question
 - [ ] choix du pays france par default, traduction des messages de l'app 
 - [ ] renomer l'app en highway code test cli
 - [ ] update documentation (readme)

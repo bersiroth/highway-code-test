@@ -127,15 +127,15 @@ def test_question_command_with_all_questions() -> None:
     We must end question if all questions have been answered
     """
     # Given : I have valid input for two questions
-    input_sequence = "b\ny\nb\ny\na\n"
+    input_sequence = "b\ny\nb\ny\na\ny\na\n"
     # When : I run question command with input
     result = run_question_command(input_sequence)
     # Then : Command has no error and I have a good output
     assert result.exit_code == 0
     assert "New question ? [y/n]: y" in result.output
-    assert "Total answer            | 3" in result.output
+    assert "Total answer            | 4" in result.output
     assert "Total correct answer    | 2" in result.output
-    assert "Total wrong answer      | 1" in result.output
+    assert "Total wrong answer      | 2" in result.output
     assert "Congratulation ! You have answer to all questions" in result.output
 
 
@@ -150,4 +150,20 @@ def test_question_command_with_question_id() -> None:
     # Then : Command has no error and I have the good question in output
     assert result.exit_code == 0
     assert "(Question 2) : Les feux de recul d'un véhicule sont de couleur ?" in result.output
+    assert "New question ? [y/n]: y" not in result.output
+
+
+def test_question_command_with_sub_title() -> None:
+    """
+    Question can have sub label
+    """
+    # Given : I have id for question with sub label
+    question_id = 4
+    # When : I run question command with question id
+    result = run_question_command(question_id=question_id)
+    # Then : Command has no error and I have the good question in output
+    assert result.exit_code == 0
+    assert "(Question 4) : Les feux de recul d'un véhicule sont de couleur ?" in result.output
+    assert "En hauteur ?" in result.output
+    assert "En profondeur ?" in result.output
     assert "New question ? [y/n]: y" not in result.output
