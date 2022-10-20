@@ -140,8 +140,11 @@ class QuestionList:
         """
         Get random question from list
         """
-        question = random.choice(self.__questions_list)
-        self.__questions_list.remove(question)
+        system_random = random.SystemRandom()
+        questions_list = self.__questions_list
+        rand_int = system_random.randint(0, len(questions_list) - 1)
+        question = questions_list[rand_int]
+        questions_list.remove(question)
         return question
 
     def is_empty(self) -> bool:

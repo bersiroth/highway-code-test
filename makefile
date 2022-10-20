@@ -27,7 +27,10 @@ type-check: ## Run static type checking
 unused-code: ## Check unused code
 	autoflake -cd --remove-all-unused-imports --remove-unused-variables -r src test fixture
 
-ci: code-style unused-code linter type-check test ## Run CI test
+security-issue: ## Check security issue
+	bandit -ril src
+
+ci: code-style unused-code security-issue linter type-check test ## Run CI test
 
 question: ## Run question command
 	python3 src/command.py question
