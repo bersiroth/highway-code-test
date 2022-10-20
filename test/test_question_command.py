@@ -1,7 +1,7 @@
 """
 Test question logic
 """
-from test.command import run_command_with_fixture
+from test.command_helper import run_command_with_fixture
 from click.testing import Result
 
 

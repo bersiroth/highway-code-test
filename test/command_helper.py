@@ -4,7 +4,7 @@ Helper for command
 from typing import Callable, List
 from click.testing import CliRunner, Result
 from command import cli
-from fixture.fixture_manager import Fixture_Manager
+from fixture.fixture_manager import FixtureManager
 
 
 def run_command_with_fixture(
@@ -14,10 +14,10 @@ def run_command_with_fixture(
     Run command with fixture
     """
     runner = CliRunner()
-    fixture_manager = Fixture_Manager()
+    fixture_manager = FixtureManager()
     fixture = fixture_manager.get()
     with runner.isolated_filesystem():
-        fixture_manager.write(fixture)
+        fixture_manager.load(fixture)
         if callback:
             callback(runner)
         args = [command_name, *args]

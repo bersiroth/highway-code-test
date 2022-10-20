@@ -1,24 +1,35 @@
+"""
+Fixture logic
+"""
 import os
 from pathlib import Path
 from typing import List
 
 
-class Fixture_Manager:
+class FixtureManager:
+    """
+    Fixture manager
+    """
 
     file_list = [
-        'questions.json',
+        "questions.json",
     ]
 
     def get(self) -> List[str]:
+        """
+        Get fixture from json file
+        """
         fixture = []
         for file in self.file_list:
-            with open(f"{Path(__file__).parent}/{file}", "r") as f:
-                fixture.append(f.read())
+            with open(f"{Path(__file__).parent}/{file}", "r", encoding="utf-8") as fixture_file:
+                fixture.append(fixture_file.read())
         return fixture
 
-    def write(self, fixture: List[str]) -> None:
+    def load(self, fixture: List[str]) -> None:
+        """
+        Load fixture
+        """
         os.mkdir("data")
         for key, file in enumerate(self.file_list):
-            with open(f"data/{file}", "w+") as f:
-                f.write(fixture[key])
-
+            with open(f"data/{file}", "w+", encoding="utf-8") as fixture_file:
+                fixture_file.write(fixture[key])
