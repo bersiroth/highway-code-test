@@ -1,38 +1,42 @@
+"""
+Question logic
+"""
 import os
-from typing import List
-from stats import Stats
-from sys import exit
 import json
 import random
+import sys
+from dataclasses import dataclass
+from typing import List, Tuple
 import click
+from stats import Stats
 
 
+@dataclass
 class Question:
+    """
+    Question class
+    """
 
     __id: int
     __question: str
     __propositions: List[str]
     __responses: List[str]
     __explication: str
-    labels: List[str] = ["A", "B", "C", "D"]
-
-    def __init__(self, id: int, question: str, propositions: List[str], responses: List[str], explication: str) -> None:
-        self.__id = id
-        self.__question = question
-        self.__propositions = propositions
-        self.__responses = responses
-        self.__explication = explication
+    __labels: Tuple[str, str, str, str] = ("A", "B", "C", "D")
 
     def render(self) -> None:
+        """
+        Render cli question
+        """
         self.__render_question()
         self.__render_propositions()
 
     def __render_propositions(self):
         propositions = self.__propositions
         max_proposition_len = len(propositions[0]) + 10
-        self.__render_proposition(self.labels[:2], max_proposition_len, propositions[:2])
+        self.__render_proposition(self.__labels[:2], max_proposition_len, propositions[:2])
         if len(propositions) > 2:
-            self.__render_proposition(self.labels[2:], max_proposition_len, propositions[2:])
+            self.__render_proposition(self.__labels[2:], max_proposition_len, propositions[2:])
         click.echo()
 
     def __render_question(self):
@@ -49,7 +53,7 @@ class Question:
         click.secho(f"(Question {self.__id}) : {question} ?", fg="blue")
         click.secho(line, fg="blue")
 
-    def __render_proposition(self, labels: List[str], max_proposition_len: int, propositions: List[str]) -> None:
+    def __render_proposition(self, labels: Tuple[str], max_proposition_len: int, propositions: List[str]) -> None:
         if len(propositions) == 1:
             click.echo(self.__format_proposition(propositions[0], max_proposition_len, labels[0]))
             return
@@ -64,7 +68,7 @@ class Question:
         label_rendered = f"[{label}]"
         return f"{label_rendered} {proposition.ljust(proposition_len, ' ')}"
 
-    def validate_answer(self, answer: str) -> bool:
+    def __validate_answer(self, answer: str) -> bool:
         responses = ",".join(self.__responses).lower()
         is_correct = answer.lower() == responses
         if is_correct:
@@ -77,7 +81,10 @@ class Question:
         click.echo()
         return is_correct
 
-    def get_answer(self) -> str:
+    def answer(self) -> bool:
+        """
+        Get and validate answer from prompt
+        """
         message = "Enter your answer with label letter separated by comma. (Ex: A,C)"
         prompt = click.style(message, fg="yellow")
         while True:
@@ -87,10 +94,10 @@ class Question:
                 continue
             break
 
-        return input_answer
+        return self.__validate_answer(input_answer)
 
     def __check_if_answer_is_a_label(self, answers: str) -> bool:
-        labels = self.labels[: len(self.__propositions)]
+        labels = self.__labels[: len(self.__propositions)]
         for answer in answers.split(","):
             if answer.upper() not in labels:
                 click.secho(f"ERROR: {answer} is not in labels ({','.join(labels)}), try again.", fg="red")
@@ -99,13 +106,17 @@ class Question:
 
 
 class QuestionList:
+    """
+    Load question list from json file
+    """
+
     __questions_list: List[Question]
 
     def __init__(self) -> None:
         self.__questions_list = self.__load_questions_list()
 
     def __load_questions_list(self) -> List[Question]:
-        with open("data/questions.json", "r") as openfile:
+        with open("data/questions.json", "r", encoding="utf-8") as openfile:
             questions = json.load(openfile)
             question_list = []
             for question in questions:
@@ -119,43 +130,55 @@ class QuestionList:
                             question["explication"],
                         )
                     )
-                except Exception as e:
-                    print(repr(e))
+                except KeyError as error:
+                    print(repr(error))
                     print(question)
 
             return question_list
 
     def get_random_question(self) -> Question:
-        question = random.choice(self.__questions_list)
-        self.__questions_list.remove(question)
+        """
+        Get random question from list
+        """
+        system_random = random.SystemRandom()
+        questions_list = self.__questions_list
+        rand_int = system_random.randint(0, len(questions_list) - 1)
+        question = questions_list[rand_int]
+        questions_list.remove(question)
         return question
 
     def is_empty(self) -> bool:
+        """
+        Check if list is empty
+        """
         return len(self.__questions_list) == 0
 
 
 def question_process(stop_on_failure: bool = False) -> None:
+    """
+    Question process, load list, get random question, answer, show stats, etc ...
+    """
     question_list = QuestionList()
     stats = Stats()
     new_question = True
+    is_correct = False
+
     while new_question:
         question = question_list.get_random_question()
         question.render()
-        answer = question.get_answer()
-        is_correct = question.validate_answer(answer)
+        is_correct = question.answer()
         stats.add_answer(is_correct)
-        if not is_correct and stop_on_failure:
-            stats.render()
-            stats.save()
-            exit(1)
-        if question_list.is_empty():
+        if question_list.is_empty() or (not is_correct and stop_on_failure):
             break
         label = click.style("New question ?", fg="yellow")
         new_question = click.confirm(label, default=None)
         click.echo()
 
-    click.echo("\n\n")
+    click.echo()
     if question_list.is_empty():
         click.echo("Congratulation ! You have answer to all questions\n")
     stats.render()
     stats.save()
+
+    if not is_correct and stop_on_failure:
+        sys.exit(1)
