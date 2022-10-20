@@ -8,11 +8,21 @@ import json
 import random
 import sys
 from dataclasses import dataclass
-from typing import List, Tuple, Optional
+from typing import List, Tuple, Optional, ClassVar
 import click
 from typing_extensions import TypeGuard
 
 from stats import Stats
+
+
+@dataclass
+class Title:
+    """
+    Title class
+    """
+
+    principal: str
+    sub: List[str | None]
 
 
 @dataclass
@@ -22,11 +32,11 @@ class Question:
     """
 
     __question_id: int
-    __question: str
+    __title: Title
     __propositions: List[str]
     __responses: List[str]
     __explication: str
-    __labels: Tuple[str, str, str, str] = ("A", "B", "C", "D")
+    __labels: ClassVar[Tuple[str, str, str, str]] = ("A", "B", "C", "D")
 
     @property
     def question_id(self) -> int:
@@ -43,16 +53,21 @@ class Question:
         self.__render_propositions()
 
     def __render_propositions(self):
+        if len(self.__title.sub) > 0:
+            click.echo(self.__title.sub[0])
         propositions = self.__propositions
         max_proposition_len = len(propositions[0]) + 10
         self.__render_proposition(self.__labels[:2], max_proposition_len, propositions[:2])
         if len(propositions) > 2:
+            if len(self.__title.sub) > 1:
+                click.echo()
+                click.echo(self.__title.sub[1])
             self.__render_proposition(self.__labels[2:], max_proposition_len, propositions[2:])
         click.echo()
 
     def __render_question(self):
         click.echo("\n\n")
-        question = click.style(self.__question, fg="white")
+        question = click.style(self.__title.principal, fg="white")
         size = len(question)
         try:
             size_terminal = os.get_terminal_size()
@@ -61,7 +76,7 @@ class Question:
             print("get_terminal_size is not supported")
         line = "".ljust(size, "-")
         click.secho(line, fg="blue")
-        click.secho(f"(Question {self.__question_id}) : {question} ?", fg="blue")
+        click.secho(f"(Question {self.__question_id}) : {question}", fg="blue")
         click.secho(line, fg="blue")
 
     def __render_proposition(self, labels: Tuple[str], max_proposition_len: int, propositions: List[str]) -> None:
@@ -88,7 +103,16 @@ class Question:
             click.secho(f"Wrong ! The good answer is {responses.upper()}.", err=True, fg="red")
 
         click.echo()
+        size = len(self.__explication)
+        try:
+            size_terminal = os.get_terminal_size()
+            size = size_terminal.columns
+        except OSError:
+            print("get_terminal_size is not supported")
+        line = "".ljust(size, "-")
+        click.secho(line, fg="cyan")
         click.secho(self.__explication.replace(". ", ".\n"), fg="cyan")
+        click.secho(line, fg="cyan")
         click.echo()
         return is_correct
 
@@ -135,7 +159,10 @@ class QuestionList:
                     question_list.append(
                         Question(
                             question["id"],
-                            question["question"],
+                            Title(
+                                question["title"]["principal"],
+                                question["title"]["sub"] if "sub" in question["title"] else [],
+                            ),
                             question["propositions"],
                             question["responses"],
                             question["explication"],

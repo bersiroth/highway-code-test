@@ -77,9 +77,6 @@ jobs:
     - name: Run static type checking
       run: |
         make type-check
-    - name: Run test
-      run: |
-        make test
 
   Test:
     runs-on: ubuntu-latest
