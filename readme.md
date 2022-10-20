@@ -58,17 +58,18 @@ Statistics are stored in a json file (read/write).
 
 ## TODO
 
--[x] dans le cas d'une suite de question exclure la question precedente de la liste
--[x] option pour reset stats
--[x] stats de la session
--[x] ajouter un custom debug https://python-devtools.helpmanual.io/
--[x] ajouter un check static de typage http://mypy-lang.org/
--[ ] creation du repo
--[ ] ci github action
--[ ] choisir l'id d'une question
--[ ] gestion des sous text de question
--[ ] choix du pays france par default, traduction des messages de l'app 
--[ ] renomer l'app en highway code test cli
--[ ] passage en DDD
--[ ] migration data json vers BDD
--[ ] ajouter un check dynamique de typage https://pydantic-docs.helpmanual.io/
+- [x] dans le cas d'une suite de question exclure la question precedente de la liste
+- [x] option pour reset stats
+- [x] stats de la session
+- [x] ajouter un custom debug https://python-devtools.helpmanual.io/
+- [x] ajouter un check static de typage http://mypy-lang.org/
+- [x] creation du repo
+- [x] ci github action
+- [ ] choisir l'id d'une question
+- [ ] gestion des sous text de question
+- [ ] choix du pays france par default, traduction des messages de l'app 
+- [ ] renomer l'app en highway code test cli
+- [ ] update documentation (readme)
+- [ ] passage en DDD
+- [ ] migration data json vers BDD
+- [ ] ajouter un check dynamique de typage https://pydantic-docs.helpmanual.io/
