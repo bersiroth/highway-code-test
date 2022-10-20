@@ -1,5 +1,7 @@
 [packages]
 click = "*"
+typing-extensions = "*"
+typing = "*"
 
 [dev-packages]
 flake8 = "*"
