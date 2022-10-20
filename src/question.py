@@ -1,13 +1,17 @@
 """
 Question logic
 """
+from __future__ import annotations
+
 import os
 import json
 import random
 import sys
 from dataclasses import dataclass
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 import click
+from typing_extensions import TypeGuard
+
 from stats import Stats
 
 
@@ -17,12 +21,19 @@ class Question:
     Question class
     """
 
-    __id: int
+    __question_id: int
     __question: str
     __propositions: List[str]
     __responses: List[str]
     __explication: str
     __labels: Tuple[str, str, str, str] = ("A", "B", "C", "D")
+
+    @property
+    def question_id(self) -> int:
+        """
+        Question id getter
+        """
+        return self.__question_id
 
     def render(self) -> None:
         """
@@ -50,7 +61,7 @@ class Question:
             print("get_terminal_size is not supported")
         line = "".ljust(size, "-")
         click.secho(line, fg="blue")
-        click.secho(f"(Question {self.__id}) : {question} ?", fg="blue")
+        click.secho(f"(Question {self.__question_id}) : {question} ?", fg="blue")
         click.secho(line, fg="blue")
 
     def __render_proposition(self, labels: Tuple[str], max_proposition_len: int, propositions: List[str]) -> None:
@@ -136,7 +147,17 @@ class QuestionList:
 
             return question_list
 
-    def get_random_question(self) -> Question:
+    def __get_question(self, question_id: int) -> Question | None:
+        """
+        Get question by id
+        """
+
+        def question_filter(question: Question) -> TypeGuard[Optional[Question]]:
+            return question.question_id == question_id
+
+        return next(filter(question_filter, self.__questions_list), None)
+
+    def __get_random_question(self) -> Question:
         """
         Get random question from list
         """
@@ -153,8 +174,20 @@ class QuestionList:
         """
         return len(self.__questions_list) == 0
 
+    def select_question(self, question_id: int | None) -> Question:
+        """
+        Select good question
+        """
+        if question_id is not None:
+            question = self.__get_question(question_id)
+            if question is None:
+                click.secho(f"Question id {question_id} not found.", fg="red")
+                sys.exit(1)
+            return question
+        return self.__get_random_question()
 
-def question_process(stop_on_failure: bool = False) -> None:
+
+def question_process(stop_on_failure: bool = False, question_id: int | None = 1) -> None:
     """
     Question process, load list, get random question, answer, show stats, etc ...
     """
@@ -164,11 +197,11 @@ def question_process(stop_on_failure: bool = False) -> None:
     is_correct = False
 
     while new_question:
-        question = question_list.get_random_question()
+        question = question_list.select_question(question_id)
         question.render()
         is_correct = question.answer()
         stats.add_answer(is_correct)
-        if question_list.is_empty() or (not is_correct and stop_on_failure):
+        if question_list.is_empty() or (not is_correct and stop_on_failure) or question_id is not None:
             break
         label = click.style("New question ?", fg="yellow")
         new_question = click.confirm(label, default=None)

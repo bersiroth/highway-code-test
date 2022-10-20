@@ -2,3 +2,5 @@
 /.pytest_cache/
 .idea
 data/stats.json
+*.pyc
+__pycache__/
