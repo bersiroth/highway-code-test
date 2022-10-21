@@ -67,8 +67,10 @@ Statistics are stored in a json file (read/write).
 - [x] ci github action
 - [x] choisir l'id d'une question
 - [x] gestion des sous text de question
-- [ ] choix du pays france par default, traduction des messages de l'app 
+- [x] choix du pays france par default, traduction des messages de l'app 
+- [ ] add code coverage in CI
 - [ ] renomer l'app en highway code test cli
+- [ ] passer en python 3.10
 - [ ] update documentation (readme)
 - [ ] passage en DDD
 - [ ] migration data json vers BDD

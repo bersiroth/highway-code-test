@@ -27,10 +27,22 @@ type-check: ## Run static type checking
 unused-code: ## Check unused code
 	autoflake -cd --remove-all-unused-imports --remove-unused-variables -r src test fixture
 
+unused-code-fix: ## Fix unused code
+	autoflake -i --remove-all-unused-imports --remove-unused-variables -r src test fixture
+
 security-issue: ## Check security issue
 	bandit -ril src
 
 ci: code-style unused-code security-issue linter type-check test ## Run CI test
+
+update-translation: ## Update translation file
+	xgettext -d base -o locales/base.pot src/*.py
+	msgmerge --update locales/en/LC_MESSAGES/main.po locales/base.pot
+	msgmerge --update locales/fr/LC_MESSAGES/main.po locales/base.pot
+
+build-translation: ## Build translation file
+	msgfmt locales/en/LC_MESSAGES/main.po -o locales/en/LC_MESSAGES/main.mo
+	msgfmt locales/fr/LC_MESSAGES/main.po -o locales/fr/LC_MESSAGES/main.mo
 
 question: ## Run question command
 	python3 src/command.py question
