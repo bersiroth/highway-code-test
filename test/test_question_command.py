@@ -1,14 +1,17 @@
 """
 Test question logic
 """
-from typing import Optional
+from __future__ import annotations
 
 from test.command_helper import run_command_with_fixture
 from click.testing import Result
 
 
 def run_question_command(
-    input_sequence: str = "a\nn\n", stop_on_failure: bool = False, question_id: Optional[int] = None
+    input_sequence: str = "a\nn\n",
+    stop_on_failure: bool = False,
+    question_id: int | None = None,
+    country: str | None = None,
 ) -> Result:
     """
     Run question command with option
@@ -19,6 +22,9 @@ def run_question_command(
     if question_id:
         args.append("--id")
         args.append(str(question_id))
+    if country:
+        args.append("--country")
+        args.append(str(country))
     return run_command_with_fixture("question", args, input_sequence)
 
 
@@ -33,15 +39,18 @@ def test_question_command_with_correct_answer() -> None:
     # Then : Command has no error and I have a good output
     assert result.exit_code == 0
     assert "Les feux de recul d'un véhicule sont de couleur ?" in result.output
-    assert "[A] rouge           [B] blanche" in result.output
-    assert "Enter your answer with label letter separated by comma. (Ex: A,C): b" in result.output
+    assert "[A] Rouge           [B] Blanche" in result.output
+    assert (
+        "Enter votre réponse en utilisant les lettres des labels en les séparant avec une virgule. (Ex: A,C): b"
+        in result.output
+    )
     assert "Correct !" in result.output
     explication = (
         "Les feux de recul d'un véhicule sont de couleur blanche et vous "
         "indiquent que la voiture a enclenché la marche arrière."
     )
     assert explication in result.output
-    assert "New question ? [y/n]: n" in result.output
+    assert "Nouvelle question ? [y/n]: n" in result.output
     assert "Total answer            | 1" in result.output
     assert "Total correct answer    | 1" in result.output
     assert "Total wrong answer      | 0" in result.output
@@ -58,8 +67,11 @@ def test_question_command_with_wrong_answer_with_stop_on_failure() -> None:
     result = run_question_command(input_sequence, stop_on_failure)
     # Then : Command has no error and I have a good output
     assert result.exit_code == 1
-    assert "Enter your answer with label letter separated by comma. (Ex: A,C): a" in result.output
-    assert "Wrong ! The good answer is B." in result.output
+    assert (
+        "Enter votre réponse en utilisant les lettres des labels en les séparant avec une virgule. (Ex: A,C): a"
+        in result.output
+    )
+    assert "Faux ! La bonne réponse est B." in result.output
     explication = (
         "Les feux de recul d'un véhicule sont de couleur blanche et vous "
         "indiquent que la voiture a enclenché la marche arrière."
@@ -80,8 +92,11 @@ def test_question_command_with_wrong_answer() -> None:
     result = run_question_command(input_sequence)
     # Then : Command has no error and I have a good output
     assert result.exit_code == 0
-    assert "Enter your answer with label letter separated by comma. (Ex: A,C): a" in result.output
-    assert "Wrong ! The good answer is B." in result.output
+    assert (
+        "Enter votre réponse en utilisant les lettres des labels en les séparant avec une virgule. (Ex: A,C): a"
+        in result.output
+    )
+    assert "Faux ! La bonne réponse est B." in result.output
     explication = (
         "Les feux de recul d'un véhicule sont de couleur blanche et vous "
         "indiquent que la voiture a enclenché la marche arrière."
@@ -98,11 +113,12 @@ def test_question_command_with_wrong_label() -> None:
     """
     # Given : I have input with invalid label
     input_sequence = "e\na\nn\n"
+    question_id = 2
     # When : I run question command with input
-    result = run_question_command(input_sequence)
+    result = run_question_command(input_sequence, question_id=question_id)
     # Then : Command has no error and I have error message for invalid label
     assert result.exit_code == 0
-    assert "ERROR: e is not in labels" in result.output
+    assert "ERREUR: e n'est pas un label valide (A,B), essayez encore." in result.output
 
 
 def test_question_command_with_multiple_question() -> None:
@@ -115,11 +131,11 @@ def test_question_command_with_multiple_question() -> None:
     result = run_question_command(input_sequence)
     # Then : Command has no error and I have a good output
     assert result.exit_code == 0
-    assert "New question ? [y/n]: y" in result.output
+    assert "Nouvelle question ? [y/n]: n" in result.output
     assert "Total answer            | 2" in result.output
     assert "Total correct answer    | 2" in result.output
     assert "Total wrong answer      | 0" in result.output
-    assert "Congratulation ! You have answer to all questions" not in result.output
+    assert "Félicitation ! Vous avez répondu a toutes les questions" not in result.output
 
 
 def test_question_command_with_all_questions() -> None:
@@ -132,11 +148,11 @@ def test_question_command_with_all_questions() -> None:
     result = run_question_command(input_sequence)
     # Then : Command has no error and I have a good output
     assert result.exit_code == 0
-    assert "New question ? [y/n]: y" in result.output
+    assert "Nouvelle question ? [y/n]: y" in result.output
     assert "Total answer            | 4" in result.output
     assert "Total correct answer    | 2" in result.output
     assert "Total wrong answer      | 2" in result.output
-    assert "Congratulation ! You have answer to all questions" in result.output
+    assert "Félicitation ! Vous avez répondu a toutes les questions" in result.output
 
 
 def test_question_command_with_question_id() -> None:
@@ -150,7 +166,7 @@ def test_question_command_with_question_id() -> None:
     # Then : Command has no error and I have the good question in output
     assert result.exit_code == 0
     assert "(Question 2) : Les feux de recul d'un véhicule sont de couleur ?" in result.output
-    assert "New question ? [y/n]: y" not in result.output
+    assert "Nouvelle question ? [y/n]:" not in result.output
 
 
 def test_question_command_with_sub_title() -> None:
@@ -166,4 +182,27 @@ def test_question_command_with_sub_title() -> None:
     assert "(Question 4) : Les feux de recul d'un véhicule sont de couleur ?" in result.output
     assert "En hauteur ?" in result.output
     assert "En profondeur ?" in result.output
-    assert "New question ? [y/n]: y" not in result.output
+    assert "Nouvelle question ? [y/n]:" not in result.output
+
+
+def test_question_command_with_en_country() -> None:
+    """
+    Question can have sub label
+    """
+    # Given : I have id for question with sub label
+    country = "en"
+    # When : I run question command with country
+    result = run_question_command(country=country)
+    # Then : Command has no error and I have the good question in output
+    assert result.exit_code == 0
+    assert "(Question 1) : The reversing lights of a vehicle are colored ?" in result.output
+    assert "Enter your answer with label letter separated by comma. (Ex: A,C): a" in result.output
+    assert "Wrong ! The good answer is B." in result.output
+    explication = (
+        "The reversing lights of a vehicle are white and indicate to you that the car has engaged reverse gear."
+    )
+
+    assert explication in result.output
+    assert "Total answer            | 1" in result.output
+    assert "Total correct answer    | 0" in result.output
+    assert "Total wrong answer      | 1" in result.output

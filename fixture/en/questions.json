@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "title": {
+            "principal": "The reversing lights of a vehicle are colored ?"
+        },
+        "propositions":[
+            "Red",
+            "White"
+        ],
+        "responses":[
+            "B"
+        ],
+        "explication":"The reversing lights of a vehicle are white and indicate to you that the car has engaged reverse gear."
+    }
+]

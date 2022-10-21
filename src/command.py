@@ -1,6 +1,8 @@
 """
 List all commands.
 """
+from __future__ import annotations
+
 import click
 
 from question import question_process
@@ -28,9 +30,14 @@ def cli():
     type=int,
     help="Select question by id.",
 )
-def question(stop_on_failure, question_id):
+@click.option(
+    "--country",
+    default="fr",
+    help="Select question by id.",
+)
+def question(stop_on_failure: bool, question_id: int | None, country: str):
     """Answer to a question."""
-    question_process(stop_on_failure, question_id)
+    question_process(stop_on_failure, question_id, country)
 
 
 @cli.command("stats")
