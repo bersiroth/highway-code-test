@@ -3,16 +3,18 @@ Question logic
 """
 from __future__ import annotations
 
+
 import os
 import json
 import random
 import sys
 from dataclasses import dataclass
-from typing import List, Tuple, Optional, ClassVar
+from typing import ClassVar, List, Optional, Tuple
 import click
 from typing_extensions import TypeGuard
 
 from stats import Stats
+from translation import Translation
 
 
 @dataclass
@@ -36,6 +38,7 @@ class Question:
     __propositions: List[str]
     __responses: List[str]
     __explication: str
+    __translation: Translation
     __labels: ClassVar[Tuple[str, str, str, str]] = ("A", "B", "C", "D")
 
     @property
@@ -98,9 +101,21 @@ class Question:
         responses = ",".join(self.__responses).lower()
         is_correct = answer.lower() == responses
         if is_correct:
-            click.secho("Correct !", fg="green")
+            message = self.__translation.translate("Correct !")
+            size = len(message) + 4
+            line = "".ljust(size, "-")
+            click.secho(line, fg="green")
+            click.secho("| " + message + " |", fg="green")
+            click.secho(line, fg="green")
         else:
-            click.secho(f"Wrong ! The good answer is {responses.upper()}.", err=True, fg="red")
+            message = self.__translation.translate("Wrong ! The good answer is {responses}.").format(
+                responses=responses.upper()
+            )
+            size = len(message) + 4
+            line = "".ljust(size, "-")
+            click.secho(line, fg="red")
+            click.secho("| " + message + " |", err=True, fg="red")
+            click.secho(line, fg="red")
 
         click.echo()
         size = len(self.__explication)
@@ -120,7 +135,7 @@ class Question:
         """
         Get and validate answer from prompt
         """
-        message = "Enter your answer with label letter separated by comma. (Ex: A,C)"
+        message = self.__translation.translate("Enter your answer with label letter separated by comma. (Ex: A,C)")
         prompt = click.style(message, fg="yellow")
         while True:
             input_answer = click.prompt(prompt, type=str)
@@ -135,7 +150,10 @@ class Question:
         labels = self.__labels[: len(self.__propositions)]
         for answer in answers.split(","):
             if answer.upper() not in labels:
-                click.secho(f"ERROR: {answer} is not in labels ({','.join(labels)}), try again.", fg="red")
+                message = self.__translation.translate(
+                    "ERROR: {answer} is not in labels ({labels}), try again."
+                ).format(answer=answer, labels=",".join(labels))
+                click.secho(message, fg="red")
                 return False
         return True
 
@@ -146,12 +164,14 @@ class QuestionList:
     """
 
     __questions_list: List[Question]
+    __translation: Translation
 
-    def __init__(self) -> None:
-        self.__questions_list = self.__load_questions_list()
+    def __init__(self, country: str) -> None:
+        self.__translation = Translation(country)
+        self.__questions_list = self.__load_questions_list(country)
 
-    def __load_questions_list(self) -> List[Question]:
-        with open("data/questions.json", "r", encoding="utf-8") as openfile:
+    def __load_questions_list(self, country: str) -> List[Question]:
+        with open(f"data/{country}/questions.json", "r", encoding="utf-8") as openfile:
             questions = json.load(openfile)
             question_list = []
             for question in questions:
@@ -166,6 +186,7 @@ class QuestionList:
                             question["propositions"],
                             question["responses"],
                             question["explication"],
+                            self.__translation,
                         )
                     )
                 except KeyError as error:
@@ -208,17 +229,19 @@ class QuestionList:
         if question_id is not None:
             question = self.__get_question(question_id)
             if question is None:
-                click.secho(f"Question id {question_id} not found.", fg="red")
+                message = self.__translation.translate("Question id {id} not found.").format(id=question_id)
+                click.secho(message, fg="red")
                 sys.exit(1)
             return question
         return self.__get_random_question()
 
 
-def question_process(stop_on_failure: bool = False, question_id: int | None = 1) -> None:
+def question_process(stop_on_failure: bool = False, question_id: int | None = 1, country: str = "fr") -> None:
     """
     Question process, load list, get random question, answer, show stats, etc ...
     """
-    question_list = QuestionList()
+    question_list = QuestionList(country)
+    translation = Translation(country)
     stats = Stats()
     new_question = True
     is_correct = False
@@ -230,13 +253,13 @@ def question_process(stop_on_failure: bool = False, question_id: int | None = 1)
         stats.add_answer(is_correct)
         if question_list.is_empty() or (not is_correct and stop_on_failure) or question_id is not None:
             break
-        label = click.style("New question ?", fg="yellow")
+        label = click.style(translation.translate("New question ?"), fg="yellow")
         new_question = click.confirm(label, default=None)
         click.echo()
 
     click.echo()
     if question_list.is_empty():
-        click.echo("Congratulation ! You have answer to all questions\n")
+        click.echo(translation.translate("Congratulation ! You have answer to all questions"))
     stats.render()
     stats.save()
 

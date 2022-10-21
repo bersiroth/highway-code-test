@@ -2,6 +2,7 @@
 click = "*"
 typing-extensions = "*"
 typing = "*"
+python-gettext = "*"
 
 [dev-packages]
 flake8 = "*"
