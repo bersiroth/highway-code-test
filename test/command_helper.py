@@ -3,7 +3,7 @@ Helper for command
 """
 from typing import Callable, List
 from click.testing import CliRunner, Result
-from command import cli
+from highway_code.command import cli
 from fixture.fixture_manager import load_fixture
 
 

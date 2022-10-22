@@ -5,8 +5,8 @@ from __future__ import annotations
 
 import click
 
-from question import question_process
-from stats import Stats
+from highway_code.question import question_process
+from highway_code.stats import Stats
 
 
 @click.group()

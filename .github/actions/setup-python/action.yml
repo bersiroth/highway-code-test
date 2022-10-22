@@ -1,0 +1,17 @@
+name: "Setup python"
+description: "Default setup for python Using"
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'
+    - name: install poetry
+      shell: bash
+      run: |
+        pip install poetry
+    - name: install dependencies
+      shell: bash
+      run: |
+        poetry install -n

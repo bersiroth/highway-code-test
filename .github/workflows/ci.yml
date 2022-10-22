@@ -3,92 +3,62 @@ name: CI
 on: [push]
 
 jobs:
-  Code-style:
+  code-style:
+    name: Check code style
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.8'
-        cache: 'pip'
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-    - name: Check code style
-      run: |
-        make code-style
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-python
+      - name: Check code style
+        run: |
+          make code-style
 
-  Unused-code:
+  unused-code:
+    name: Check unused code
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.8'
-        cache: 'pip'
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-    - name: Check code style
-      run: |
-        make unused-code
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-python
+      - name: Check code style
+        run: |
+          make unused-code
 
-  Security-issue:
+  security-issue:
+    name: Check security issue
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.8'
-        cache: 'pip'
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-    - name: Check code style
-      run: |
-        make security-issue
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-python
+      - name: Check code style
+        run: |
+          make security-issue
 
-  Linter:
+  linter:
+    name: Check code linter
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.8'
-        cache: 'pip'
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-    - name: Check code linter
-      run: |
-        make linter
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-python
+      - name: Check code linter
+        run: |
+          make linter
 
-  Type-check:
+  type-check:
+    name: Run static type checking
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.8'
-        cache: 'pip'
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-    - name: Run static type checking
-      run: |
-        make type-check
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-python
+      - name: Run static type checking
+        run: |
+          make type-check
 
-  Test:
+  test:
+    name: Run test
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.8'
-        cache: 'pip'
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-    - name: Run test
-      run: |
-        make test
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-python
+      - name: Run test
+        run: |
+          make test

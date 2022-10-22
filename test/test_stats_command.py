@@ -4,7 +4,7 @@ Test stats logic
 from test.command_helper import run_command_with_fixture
 from click.testing import CliRunner, Result
 from freezegun import freeze_time
-from command import cli
+from highway_code.command import cli
 
 
 def run_stats_command(with_question: bool = False, question_input: str = "b\nn\n", reset: bool = False) -> Result:
