@@ -21,6 +21,9 @@ linter: ## Check code linter
 test: ## Run test
 	poetry run pytest --cache-clear
 
+test-coverage: ## Run test with coverage
+	poetry run pytest --cache-clear --cov-fail-under=90 --no-cov-on-fail --cov=src/highway_code
+
 type-check: ## Run static type checking
 	MYPYPATH=src poetry run mypy --namespace-packages --explicit-package-bases src test fixture
 
@@ -33,7 +36,7 @@ unused-code-fix: ## Fix unused code
 security-issue: ## Check security issue
 	poetry run bandit -ril src
 
-ci: code-style unused-code security-issue linter type-check test ## Run CI test
+ci: code-style unused-code security-issue linter type-check test-coverage ## Run CI test
 
 update-translation: ## Update translation file
 	xgettext -d base -o locales/base.pot src/*.py

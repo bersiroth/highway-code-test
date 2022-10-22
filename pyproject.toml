@@ -23,6 +23,7 @@ mypy = "^0.982"
 pylint = "^2.15.5"
 autoflake = "^1.7.6"
 bandit = "^1.7.4"
+pytest-cov = "^4.0.0"
 
 [build-system]
 requires = ["poetry-core"]

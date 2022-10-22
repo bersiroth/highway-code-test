@@ -5,3 +5,4 @@ data/stats.json
 *.pyc
 __pycache__/
 /dist/
+/.coverage
