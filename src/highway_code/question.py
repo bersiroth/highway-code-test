@@ -13,8 +13,8 @@ from typing import ClassVar, List, Optional, Tuple
 import click
 from typing_extensions import TypeGuard
 
-from stats import Stats
-from translation import Translation
+from highway_code.stats import Stats
+from highway_code.translation import Translation
 
 
 @dataclass

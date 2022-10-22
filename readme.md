@@ -68,10 +68,13 @@ Statistics are stored in a json file (read/write).
 - [x] choisir l'id d'une question
 - [x] gestion des sous text de question
 - [x] choix du pays france par default, traduction des messages de l'app 
-- [ ] add code coverage in CI
+- [x] migration sur poetry 
+- [ ] add code coverage in CI pytest-cov
+- [ ] passage en DDD avec python injector
+- [ ] profiter du DDD pour passer d'un sockage Json a une base SQLite
+- [ ] update documentation (readme)
+- [ ] logger
 - [ ] renomer l'app en highway code test cli
 - [ ] passer en python 3.10
-- [ ] update documentation (readme)
-- [ ] passage en DDD
-- [ ] migration data json vers BDD
+- [ ] semver
 - [ ] ajouter un check dynamique de typage https://pydantic-docs.helpmanual.io/
