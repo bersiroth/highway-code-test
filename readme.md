@@ -69,8 +69,8 @@ Statistics are stored in a json file (read/write).
 - [x] gestion des sous text de question
 - [x] choix du pays france par default, traduction des messages de l'app 
 - [x] migration sur poetry 
-- [ ] add code coverage in CI pytest-cov
-- [ ] passage en DDD avec python injector
+- [x] add code coverage in CI pytest-cov
+- [x] passage en DDD avec python injector
 - [ ] profiter du DDD pour passer d'un sockage Json a une base SQLite
 - [ ] update documentation (readme)
 - [ ] logger

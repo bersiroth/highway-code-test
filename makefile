@@ -14,15 +14,21 @@ code-style: ## Check code style
 code-style-fix: ## Fix code style
 	$(coding_style_command)
 
+import: ## Check import
+	poetry run isort --diff src tests
+
+import-fix: ## Fix import
+	poetry run isort src tests
+
 linter: ## Check code linter
 	poetry run flake8 --max-line-length $(line_length) --max-complexity 5 src test fixture
 	poetry run pylint --max-line-length $(line_length) src test fixture
 
 test: ## Run test
-	poetry run pytest --cache-clear
+	poetry run pytest --cache-clear test
 
 test-coverage: ## Run test with coverage
-	poetry run pytest --cache-clear --cov-fail-under=90 --no-cov-on-fail --cov=src/highway_code
+	poetry run pytest --cache-clear --cov-fail-under=90 --no-cov-on-fail --cov=src
 
 type-check: ## Run static type checking
 	MYPYPATH=src poetry run mypy --namespace-packages --explicit-package-bases src test fixture
@@ -36,7 +42,10 @@ unused-code-fix: ## Fix unused code
 security-issue: ## Check security issue
 	poetry run bandit -ril src
 
-ci: code-style unused-code security-issue linter type-check test-coverage ## Run CI test
+security-dependency: ## Check dependency security issue
+	poetry run pip freeze | poetry run safety check --stdin
+
+ci: code-style unused-code security-dependency security-issue import linter type-check test-coverage ## Run CI test
 
 update-translation: ## Update translation file
 	xgettext -d base -o locales/base.pot src/*.py

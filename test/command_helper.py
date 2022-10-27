@@ -3,8 +3,8 @@ Helper for command
 """
 from typing import Callable, List
 from click.testing import CliRunner, Result
-from highway_code.command import cli
 from fixture.fixture_manager import load_fixture
+from highway_code.infrastructure.cli.command import cli
 
 
 def run_command_with_fixture(

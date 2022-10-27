@@ -1,10 +1,10 @@
 """
 Test stats logic
 """
+from highway_code.infrastructure.cli.command import cli
 from test.command_helper import run_command_with_fixture
 from click.testing import CliRunner, Result
 from freezegun import freeze_time
-from highway_code.command import cli
 
 
 def run_stats_command(with_question: bool = False, question_input: str = "b\nn\n", reset: bool = False) -> Result:
@@ -14,7 +14,8 @@ def run_stats_command(with_question: bool = False, question_input: str = "b\nn\n
 
     def callback(runner: CliRunner):
         if with_question:
-            runner.invoke(cli, ["question"], input=question_input)
+            result = runner.invoke(cli, ["question"], input=question_input)
+            print(result.output)
 
     args = []
     if reset:

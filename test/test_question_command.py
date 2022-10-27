@@ -3,13 +3,26 @@ Test question logic
 """
 from __future__ import annotations
 
+from pytest import fixture
+
+from highway_code.infrastructure.cli import command
+from highway_code.infrastructure.containers import Container
 from test.command_helper import run_command_with_fixture
 from click.testing import Result
+
+container = Container()
+
+
+@fixture(autouse=True)
+def containerert():
+    container.unwire()
+    container.wire(modules=[command])
+    yield container
 
 
 def run_question_command(
     input_sequence: str = "a\nn\n",
-    stop_on_failure: bool = False,
+    error_on_failure: bool = False,
     question_id: int | None = None,
     country: str | None = None,
 ) -> Result:
@@ -17,8 +30,8 @@ def run_question_command(
     Run question command with option
     """
     args = []
-    if stop_on_failure:
-        args.append("--stop-on-failure")
+    if error_on_failure:
+        args.append("--error_on_failure")
     if question_id:
         args.append("--id")
         args.append(str(question_id))
@@ -56,15 +69,15 @@ def test_question_command_with_correct_answer() -> None:
     assert "Total wrong answer      | 0" in result.output
 
 
-def test_question_command_with_wrong_answer_with_stop_on_failure() -> None:
+def test_question_command_with_wrong_answer_with_error_on_failure() -> None:
     """
     Test question command must fail with stop on failure flag
     """
     # Given : I have valid input
     input_sequence = "a\nn\n"
-    stop_on_failure = True
+    error_on_failure = True
     # When : I run question command with input
-    result = run_question_command(input_sequence, stop_on_failure)
+    result = run_question_command(input_sequence, error_on_failure)
     # Then : Command has no error and I have a good output
     assert result.exit_code == 1
     assert (
