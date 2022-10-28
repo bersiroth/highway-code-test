@@ -13,9 +13,8 @@ class QuestionCommand:
     """Command for answer to a question"""
 
     question_id: int | None
-    # TODO: faire un tuple de country
-    country: str | None
-    error_on_failure: bool | None
+    country: str
+    error_on_failure: bool
 
 
 class QuestionHandler:

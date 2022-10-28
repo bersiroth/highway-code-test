@@ -1,6 +1,3 @@
-"""
-Model question
-"""
 from __future__ import annotations
 
 import os
@@ -63,7 +60,7 @@ class CliRenderQuestion:
         line = "".ljust(size, "-")
         self.__cli_render.echo_color(line, color)
         self.__cli_render.echo_color("| " + message + " |", color)
-        self.__cli_render.echo_color(line + '\n', color)
+        self.__cli_render.echo_color(line + "\n", color)
         self.render_explication(question)
 
     def render_explication(self, question: Question):
@@ -91,7 +88,7 @@ class CliRenderQuestionManager:
         return input_answer.replace(" ", "")
 
     def render_error(self, error: str) -> None:
-        self.__cli_render.echo_color(error, 'red')
+        self.__cli_render.echo_color(error, "red")
 
     def ask_question_again(self, message: str) -> bool:
         message = self.__cli_render.message_color(message, "yellow")

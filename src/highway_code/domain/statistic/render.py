@@ -1,6 +1,3 @@
-"""
-Statistic cli render
-"""
 from __future__ import annotations
 
 from highway_code.domain.model.statistic import Statistic

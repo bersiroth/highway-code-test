@@ -1,10 +1,8 @@
 """Render statistic"""
 from __future__ import annotations
 
-import sys
 from dataclasses import dataclass
 
-from highway_code.domain.question.manager import QuestionManager
 from highway_code.domain.statistic.manager import StatisticManager
 
 

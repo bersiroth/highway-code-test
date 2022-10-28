@@ -1,23 +1,21 @@
-"""
-Test question logic
-"""
 from __future__ import annotations
 
+from test.command_helper import run_command_with_fixture
+
+import pytest
+from click.testing import Result
 from pytest import fixture
 
+from highway_code.domain.question.exception import BadCountry
 from highway_code.infrastructure.cli import command
 from highway_code.infrastructure.containers import Container
-from test.command_helper import run_command_with_fixture
-from click.testing import Result
-
-container = Container()
 
 
-@fixture(autouse=True)
-def containerert():
-    container.unwire()
+@fixture(scope="session", autouse=True)
+def init_container():
+    container = Container()
+    container.init_resources()
     container.wire(modules=[command])
-    yield container
 
 
 def run_question_command(
@@ -26,9 +24,6 @@ def run_question_command(
     question_id: int | None = None,
     country: str | None = None,
 ) -> Result:
-    """
-    Run question command with option
-    """
     args = []
     if error_on_failure:
         args.append("--error_on_failure")
@@ -42,9 +37,6 @@ def run_question_command(
 
 
 def test_question_command_with_correct_answer() -> None:
-    """
-    Test standard question command
-    """
     # Given : I have valid input
     input_sequence = "b\nn\n"
     # When : I run question command with input
@@ -70,9 +62,6 @@ def test_question_command_with_correct_answer() -> None:
 
 
 def test_question_command_with_wrong_answer_with_error_on_failure() -> None:
-    """
-    Test question command must fail with stop on failure flag
-    """
     # Given : I have valid input
     input_sequence = "a\nn\n"
     error_on_failure = True
@@ -96,9 +85,6 @@ def test_question_command_with_wrong_answer_with_error_on_failure() -> None:
 
 
 def test_question_command_with_wrong_answer() -> None:
-    """
-    Test standard stats command with wrong answer
-    """
     # Given : I have valid input
     input_sequence = "a\nn\n"
     # When : I run question command with input
@@ -121,9 +107,6 @@ def test_question_command_with_wrong_answer() -> None:
 
 
 def test_question_command_with_wrong_label() -> None:
-    """
-    Question command must validate label
-    """
     # Given : I have input with invalid label
     input_sequence = "e\na\nn\n"
     question_id = 2
@@ -135,9 +118,6 @@ def test_question_command_with_wrong_label() -> None:
 
 
 def test_question_command_with_multiple_question() -> None:
-    """
-    We can answer to multiple question with only one command
-    """
     # Given : I have valid input for two questions
     input_sequence = "b\ny\nb\nn\n"
     # When : I run question command with input
@@ -152,9 +132,6 @@ def test_question_command_with_multiple_question() -> None:
 
 
 def test_question_command_with_all_questions() -> None:
-    """
-    We must end question if all questions have been answered
-    """
     # Given : I have valid input for two questions
     input_sequence = "b\ny\nb\ny\na\ny\na\n"
     # When : I run question command with input
@@ -169,9 +146,6 @@ def test_question_command_with_all_questions() -> None:
 
 
 def test_question_command_with_question_id() -> None:
-    """
-    We can select question id
-    """
     # Given : I have question id
     question_id = 2
     # When : I run question command with question id
@@ -183,9 +157,6 @@ def test_question_command_with_question_id() -> None:
 
 
 def test_question_command_with_sub_title() -> None:
-    """
-    Question can have sub label
-    """
     # Given : I have id for question with sub label
     question_id = 4
     # When : I run question command with question id
@@ -199,10 +170,7 @@ def test_question_command_with_sub_title() -> None:
 
 
 def test_question_command_with_en_country() -> None:
-    """
-    Question can have sub label
-    """
-    # Given : I have id for question with sub label
+    # Given : I have a country
     country = "en"
     # When : I run question command with country
     result = run_question_command(country=country)
@@ -219,3 +187,13 @@ def test_question_command_with_en_country() -> None:
     assert "Total answer            | 1" in result.output
     assert "Total correct answer    | 0" in result.output
     assert "Total wrong answer      | 1" in result.output
+
+
+def test_question_command_with_unknown_country() -> None:
+    # Given : I have an unknown country
+    country = "jp"
+    # When : I run question command with country
+    with pytest.raises(BadCountry) as exc_info:
+        run_question_command(country=country)
+    # Then : Command has error and I have the good question in output
+    assert "jp is not a valid country (fr,en)" in str(exc_info.value)

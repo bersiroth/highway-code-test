@@ -1,6 +1,3 @@
-"""
-Click cli render
-"""
 import click
 
 from highway_code.domain.render.cli import CliRenderInterface

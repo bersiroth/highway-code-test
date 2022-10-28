@@ -1,6 +1,3 @@
-"""
-Gettext Translation
-"""
 import gettext
 
 from highway_code.domain.translation.translation import TranslationInterface
@@ -16,4 +13,3 @@ class GettextTranslation(TranslationInterface):
     def load_translation(self, country: str) -> None:
         translation = gettext.translation("main", localedir="locales", languages=[country])
         self.__translation = translation
-

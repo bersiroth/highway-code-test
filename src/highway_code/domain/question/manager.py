@@ -1,56 +1,54 @@
-"""
-Question manager
-"""
 from __future__ import annotations
 
-import sys
 import random
-from typing import List, Dict
+import sys
+from typing import Dict, List, Tuple
 
 from typing_extensions import TypeGuard
 
 from highway_code.domain.model.question import Question, QuestionRepositoryInterface
-from highway_code.domain.question.render import CliRenderQuestionManager, CliRenderQuestion
+from highway_code.domain.question.exception import BadCountry
+from highway_code.domain.question.render import (
+    CliRenderQuestion,
+    CliRenderQuestionManager,
+)
 from highway_code.domain.translation.translation import TranslationInterface
 
 
 class QuestionManager:
-    """
-    Model question
-    """
-
-    # TODO: why dict and not directly list of Question move to question model
     __questions_list: Dict[str, List[Question]] = {}
     __translation: TranslationInterface
     __cli_render_question: CliRenderQuestion
     __cli_render_question_manager: CliRenderQuestionManager
     __question_repository: QuestionRepositoryInterface
+    __available_countries: Tuple[str, str] = ("fr", "en")
 
     def __init__(
         self,
         question_repository: QuestionRepositoryInterface,
         translation: TranslationInterface,
         cli_render_question_manager: CliRenderQuestionManager,
-        cli_render_question: CliRenderQuestion
+        cli_render_question: CliRenderQuestion,
     ):
-        debug(self.__questions_list)
+        self.__questions_list = {}
         self.__question_repository = question_repository
         self.__translation = translation
         self.__cli_render_question = cli_render_question
         self.__cli_render_question_manager = cli_render_question_manager
 
     def select_question(self, country: str, question_id: int | None) -> Question:
-        """
-        Select question
-        """
+        available_countries = self.__available_countries
+        if country not in available_countries:
+            raise BadCountry(f'{country} is not a valid country ({",".join(available_countries) })')
         if country not in self.__questions_list:
-            debug(self.__questions_list)
             self.__questions_list[country] = self.__question_repository.get_all_question(country)
 
         self.__translation.load_translation(country)
         if question_id is not None:
+
             def question_filter(current_question: Question) -> TypeGuard[Question | None]:
                 return current_question.question_id == question_id
+
             question = next(filter(question_filter, self.__questions_list[country]), None)
             if question is None:
                 message = self.__translation.translate("Question id {id} not found.").format(id=question_id)
@@ -66,9 +64,6 @@ class QuestionManager:
         return question
 
     def question_list_is_empty(self, country: str) -> bool:
-        """
-        Check if list is empty
-        """
         return len(self.__questions_list[country]) == 0
 
     def process_question(self, question: Question) -> bool:
@@ -79,9 +74,9 @@ class QuestionManager:
             if question.answer_is_label(answer):
                 break
             labels = question.labels[: len(question.propositions)]
-            message = self.__translation.translate(
-                "ERROR: {answer} is not in labels ({labels}), try again."
-            ).format(answer=answer, labels=",".join(labels))
+            message = self.__translation.translate("ERROR: {answer} is not in labels ({labels}), try again.").format(
+                answer=answer, labels=",".join(labels)
+            )
             self.__cli_render_question_manager.render_error(message)
 
         is_correct_answer = question.validate_answer(answer)
@@ -103,5 +98,3 @@ class QuestionManager:
     def show_congratulation(self):
         message = self.__translation.translate("Congratulation ! You have answer to all questions")
         return self.__cli_render_question_manager.show_congratulation(message)
-
-

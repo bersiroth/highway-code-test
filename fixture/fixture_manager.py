@@ -12,7 +12,6 @@ def load_fixture(path: str) -> None:
     """
     fixture_file = str(Path(__file__).parent) + "/fr/questions.json"
     data_file = path + "/data/fr"
-    print(data_file)
     os.makedirs(data_file)
     shutil.copyfile(fixture_file, data_file + "/questions.json")
 

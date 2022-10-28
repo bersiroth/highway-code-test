@@ -36,3 +36,5 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.scripts]
 highway-code = "highway_code.infrastructure.cli.command:start"
 
+[tool.isort]
+profile = "black"

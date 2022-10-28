@@ -1,14 +1,14 @@
-"""
-json question repository
-"""
 import json
 from typing import List
 
-from highway_code.domain.model.question import QuestionRepositoryInterface, Question, Title
+from highway_code.domain.model.question import (
+    Question,
+    QuestionRepositoryInterface,
+    Title,
+)
 
 
 class JsonQuestionRepository(QuestionRepositoryInterface):
-
     def get_all_question(self, country: str) -> List[Question]:
         with open(f"data/{country}/questions.json", "r", encoding="utf-8") as openfile:
             question_list = []
@@ -24,7 +24,7 @@ class JsonQuestionRepository(QuestionRepositoryInterface):
                             ),
                             question["propositions"],
                             question["responses"],
-                            question["explication"]
+                            question["explication"],
                         )
                     )
                 except KeyError as error:

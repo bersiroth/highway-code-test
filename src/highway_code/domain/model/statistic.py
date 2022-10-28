@@ -1,6 +1,3 @@
-"""
-Model question
-"""
 from __future__ import annotations
 
 from abc import abstractmethod
@@ -8,9 +5,6 @@ from datetime import date
 
 
 class Statistic:
-    """
-    Model statistic
-    """
 
     __answer: int
     __correct: int
@@ -52,7 +46,6 @@ class Statistic:
 
 
 class StatisticRepositoryInterface:
-
     @abstractmethod
     def load(self) -> Statistic:
         pass

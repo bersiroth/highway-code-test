@@ -15,14 +15,14 @@ code-style-fix: ## Fix code style
 	$(coding_style_command)
 
 import: ## Check import
-	poetry run isort --diff src tests
+	poetry run isort --check --diff src test
 
 import-fix: ## Fix import
-	poetry run isort src tests
+	poetry run isort src test
 
 linter: ## Check code linter
-	poetry run flake8 --max-line-length $(line_length) --max-complexity 5 src test fixture
-	poetry run pylint --max-line-length $(line_length) src test fixture
+	poetry run flake8 --max-line-length $(line_length) --max-complexity 8 src test fixture
+	poetry run pylint --max-line-length $(line_length) --rcfile=.pylintrc src test fixture
 
 test: ## Run test
 	poetry run pytest --cache-clear test
@@ -46,6 +46,10 @@ security-dependency: ## Check dependency security issue
 	poetry run pip freeze | poetry run safety check --stdin
 
 ci: code-style unused-code security-dependency security-issue import linter type-check test-coverage ## Run CI test
+
+fix: code-style-fix ## fix code base
+fix: import-fix
+fix: unused-code-fix
 
 update-translation: ## Update translation file
 	xgettext -d base -o locales/base.pot src/*.py

@@ -1,0 +1,2 @@
+class BadCountry(Exception):
+    pass

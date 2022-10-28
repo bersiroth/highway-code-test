@@ -13,9 +13,7 @@ class StatisticManager:
     __cli_render_statistic: CliRenderStatistic
 
     def __init__(
-            self,
-            statistic_repository: StatisticRepositoryInterface,
-            cli_render_statistic: CliRenderStatistic
+        self, statistic_repository: StatisticRepositoryInterface, cli_render_statistic: CliRenderStatistic
     ) -> None:
         self.__cli_render_statistic = cli_render_statistic
         self.__statistic_repository = statistic_repository
@@ -35,5 +33,3 @@ class StatisticManager:
     def reset(self):
         self.__global = Statistic()
         self.__statistic_repository.save(self.__global)
-
-

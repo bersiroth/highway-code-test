@@ -1,6 +1,3 @@
-"""
-Translation logic
-"""
 from abc import abstractmethod
 
 
