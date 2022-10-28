@@ -194,5 +194,5 @@ def test_question_command_with_unknown_country() -> None:
     # When : I run question command with country
     with pytest.raises(BadCountry) as exc_info:
         run_question_command(country=country)
-    # Then : Command has error and I have the good question in output
+    # Then : Command has raise an exception with good message
     assert "jp is not a valid country (fr,en)" in str(exc_info.value)
