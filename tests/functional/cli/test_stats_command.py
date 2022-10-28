@@ -1,9 +1,8 @@
-from test.command_helper import run_command_with_fixture
-
 from click.testing import CliRunner, Result
 from freezegun import freeze_time
 
 from highway_code.infrastructure.cli.command import cli
+from tests.functional.cli.command_helper import run_command_with_fixture
 
 
 def run_stats_command(with_question: bool = False, question_input: str = "b\nn\n", reset: bool = False) -> Result:

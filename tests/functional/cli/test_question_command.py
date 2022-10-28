@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from test.command_helper import run_command_with_fixture
-
 import pytest
 from click.testing import Result
 from pytest import fixture
@@ -9,6 +7,7 @@ from pytest import fixture
 from highway_code.domain.question.exception import BadCountry
 from highway_code.infrastructure.cli import command
 from highway_code.infrastructure.containers import Container
+from tests.functional.cli.command_helper import run_command_with_fixture
 
 
 @fixture(scope="session", autouse=True)

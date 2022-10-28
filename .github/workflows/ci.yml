@@ -73,12 +73,12 @@ jobs:
         run: |
           make type-check
 
-  test:
-    name: Run test
+  tests:
+    name: Run all tests with coverage
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-python
-      - name: Run test
+      - name: Run all tests with coverage
         run: |
-          make test-coverage
+          make test-all-coverage

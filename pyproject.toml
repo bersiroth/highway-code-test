@@ -5,7 +5,8 @@ description = "cli for highway code"
 authors = ["bersiroth <caronbernard1@gmail.com>"]
 readme = "readme.md"
 packages = [
-    { include = "highway_code", from = "src" }
+    { include = "highway_code", from = "src" },
+    { include = "tests", from = "" }
 ]
 
 [tool.poetry.dependencies]

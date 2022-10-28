@@ -1,5 +1,5 @@
 line_length = 120
-coding_style_command = poetry run black -l $(line_length) src test fixture
+coding_style_command = poetry run black -l $(line_length) src tests fixture
 
 .PHONY: help code_style code_style_fix linter test ci question stats type-check unused-code
 
@@ -15,29 +15,32 @@ code-style-fix: ## Fix code style
 	$(coding_style_command)
 
 import: ## Check import
-	poetry run isort --check --diff src test
+	poetry run isort --check --diff src tests
 
 import-fix: ## Fix import
-	poetry run isort src test
+	poetry run isort src tests
 
 linter: ## Check code linter
-	poetry run flake8 --max-line-length $(line_length) --max-complexity 8 src test fixture
-	poetry run pylint --max-line-length $(line_length) --rcfile=.pylintrc src test fixture
+	poetry run flake8 --max-line-length $(line_length) --max-complexity 8 src tests fixture
+	poetry run pylint --max-line-length $(line_length) --rcfile=.pylintrc src tests fixture
 
-test: ## Run test
-	poetry run pytest --cache-clear test
+test-functional: ## Run functional tests
+	poetry run pytest --cache-clear tests/functional
 
-test-coverage: ## Run test with coverage
+test-all: ## Run all tests
+	poetry run pytest --cache-clear tests
+
+test-all-coverage: ## Run test with coverage
 	poetry run pytest --cache-clear --cov-fail-under=90 --no-cov-on-fail --cov=src
 
 type-check: ## Run static type checking
-	MYPYPATH=src poetry run mypy --namespace-packages --explicit-package-bases src test fixture
+	MYPYPATH=src poetry run mypy --namespace-packages --explicit-package-bases src tests fixture
 
 unused-code: ## Check unused code
-	poetry run autoflake -cd --remove-all-unused-imports --remove-unused-variables -r src test fixture
+	poetry run autoflake -cd --remove-all-unused-imports --remove-unused-variables -r src tests fixture
 
 unused-code-fix: ## Fix unused code
-	poetry run autoflake -i --remove-all-unused-imports --remove-unused-variables -r src test fixture
+	poetry run autoflake -i --remove-all-unused-imports --remove-unused-variables -r src tests fixture
 
 security-issue: ## Check security issue
 	poetry run bandit -ril src
@@ -45,7 +48,14 @@ security-issue: ## Check security issue
 security-dependency: ## Check dependency security issue
 	poetry run pip freeze | poetry run safety check --stdin
 
-ci: code-style unused-code security-dependency security-issue import linter type-check test-coverage ## Run CI test
+ci: code-style ## Run CI test
+ci: unused-code
+ci: security-dependency
+ci: security-issue
+ci: import
+ci: linter
+ci: type-check
+ci: test-all-coverage
 
 fix: code-style-fix ## fix code base
 fix: import-fix
