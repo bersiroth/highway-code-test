@@ -2,12 +2,15 @@ from __future__ import annotations
 
 import random
 import sys
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
 from typing_extensions import TypeGuard
 
 from highway_code.domain.model.question import Question, QuestionRepositoryInterface
-from highway_code.domain.question.exception import BadCountry
+from highway_code.domain.question.exception import (
+    BadCountryException,
+    EmptyQuestionListException,
+)
 from highway_code.domain.question.render import (
     CliRenderQuestion,
     CliRenderQuestionManager,
@@ -21,7 +24,7 @@ class QuestionManager:
     __cli_render_question: CliRenderQuestion
     __cli_render_question_manager: CliRenderQuestionManager
     __question_repository: QuestionRepositoryInterface
-    __available_countries: Tuple[str, str] = ("fr", "en")
+    __available_countries: List[str] = ["fr", "en"]
 
     def __init__(
         self,
@@ -36,12 +39,14 @@ class QuestionManager:
         self.__cli_render_question = cli_render_question
         self.__cli_render_question_manager = cli_render_question_manager
 
-    def select_question(self, country: str, question_id: int | None) -> Question:
+    def select_question(self, country: str, question_id: int = None) -> Question:
         available_countries = self.__available_countries
         if country not in available_countries:
-            raise BadCountry(f'{country} is not a valid country ({",".join(available_countries) })')
+            raise BadCountryException.from_country_and_available_countries(country, available_countries)
         if country not in self.__questions_list:
             self.__questions_list[country] = self.__question_repository.get_all_question(country)
+        if self.question_list_is_empty(country=country):
+            raise EmptyQuestionListException()
 
         self.__translation.load_translation(country)
         if question_id is not None:

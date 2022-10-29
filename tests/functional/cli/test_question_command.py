@@ -4,7 +4,7 @@ import pytest
 from click.testing import Result
 from pytest import fixture
 
-from highway_code.domain.question.exception import BadCountry
+from highway_code.domain.question.exception import BadCountryException
 from highway_code.infrastructure.cli import command
 from highway_code.infrastructure.containers import Container
 from tests.functional.cli.command_helper import run_command_with_fixture
@@ -192,7 +192,7 @@ def test_question_command_with_unknown_country() -> None:
     # Given : I have an unknown country
     country = "jp"
     # When : I run question command with country
-    with pytest.raises(BadCountry) as exc_info:
+    with pytest.raises(BadCountryException) as exc_info:
         run_question_command(country=country)
     # Then : Command has raise an exception with good message
     assert "jp is not a valid country (fr,en)" in str(exc_info.value)

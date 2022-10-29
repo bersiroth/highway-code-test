@@ -75,6 +75,4 @@ Statistics are stored in a json file (read/write).
 - [ ] update documentation (readme)
 - [ ] logger
 - [ ] renomer l'app en highway code test cli
-- [ ] passer en python 3.10
-- [ ] semver
-- [ ] ajouter un check dynamique de typage https://pydantic-docs.helpmanual.io/
+- [ ] push on pypi
