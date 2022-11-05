@@ -1,6 +1,3 @@
-"""
-Statistic manager
-"""
 from highway_code.domain.model.statistic import Statistic, StatisticRepositoryInterface
 from highway_code.domain.statistic.render import CliRenderStatistic
 

@@ -15,10 +15,10 @@ code-style-fix: ## Fix code style
 	$(coding_style_command)
 
 import: ## Check import
-	poetry run isort --check --diff src tests
+	poetry run isort --check --diff src tests fixture
 
 import-fix: ## Fix import
-	poetry run isort src tests
+	poetry run isort src tests fixture
 
 linter: ## Check code linter
 	poetry run flake8 --max-line-length $(line_length) --max-complexity 8 src tests fixture
@@ -31,7 +31,7 @@ test-all: ## Run all tests
 	poetry run pytest --cache-clear tests
 
 test-all-coverage: ## Run test with coverage
-	poetry run pytest --cache-clear --cov-fail-under=90 --no-cov-on-fail --cov=src
+	poetry run pytest --cache-clear --cov-fail-under=90 --no-cov-on-fail --cov=src --cov-report=term-missing:skip-covered
 
 type-check: ## Run static type checking
 	MYPYPATH=src poetry run mypy --namespace-packages --strict --explicit-package-bases src tests fixture

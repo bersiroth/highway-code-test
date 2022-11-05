@@ -1,15 +1,10 @@
-"""
-Fixture logic
-"""
 import os
 import shutil
 from pathlib import Path
 
 
 def load_fixture(path: str) -> None:
-    """
-    Load fixture
-    """
+
     fixture_file = str(Path(__file__).parent) + "/fr/questions.json"
     data_file = path + "/data/fr"
     os.makedirs(data_file)
