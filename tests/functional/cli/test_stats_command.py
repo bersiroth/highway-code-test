@@ -6,7 +6,7 @@ from tests.functional.cli.command_helper import run_command_with_fixture
 
 
 def run_stats_command(with_question: bool = False, question_input: str = "b\nn\n", reset: bool = False) -> Result:
-    def callback(runner: CliRunner):
+    def callback(runner: CliRunner) -> None:
         if with_question:
             result = runner.invoke(cli, ["question"], input=question_input)
             print(result.output)

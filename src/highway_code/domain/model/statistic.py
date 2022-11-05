@@ -5,19 +5,13 @@ from datetime import date
 
 
 class Statistic:
-
-    __answer: int
-    __correct: int
-    __wrong: int
-    __last: str
-
     def __init__(self, answer: int = 0, correct: int = 0, wrong: int = 0, last: str = "1999-01-01"):
         self.__answer = answer
         self.__correct = correct
         self.__wrong = wrong
         self.__last = last
 
-    def add_answer(self, is_correct: bool):
+    def add_answer(self, is_correct: bool) -> None:
         self.__answer += 1
         if is_correct:
             self.__correct += 1

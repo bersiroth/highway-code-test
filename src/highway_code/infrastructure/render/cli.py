@@ -14,7 +14,7 @@ class ClickCliRender(CliRenderInterface):
         return click.style(message, fg=color)
 
     def get_input(self, message: str) -> str:
-        return click.prompt(message, type=str)
+        return str(click.prompt(message, type=str))
 
     def confirm(self, message: str) -> bool:
         return click.confirm(message, default=None)

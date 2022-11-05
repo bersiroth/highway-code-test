@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from abc import abstractmethod
 from dataclasses import dataclass
-from typing import ClassVar, List, Tuple
+from typing import List, Tuple
 
 
 @dataclass(frozen=True)
@@ -18,7 +18,7 @@ class Question:
     propositions: List[str]
     responses: List[str]
     explication: str
-    labels: ClassVar[Tuple[str, str, str, str]] = ("A", "B", "C", "D")
+    labels: Tuple[str, str, str, str] = ("A", "B", "C", "D")
 
     def answer_is_label(self, answers: str) -> bool:
         labels = self.labels[: len(self.propositions)]

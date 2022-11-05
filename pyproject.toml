@@ -13,7 +13,6 @@ packages = [
 python = "^3.8"
 click = "^8.1.3"
 python-gettext = "^4.1"
-typing-extensions = "^4.4.0"
 dependency-injector = "^4.40.0"
 
 [tool.poetry.group.dev.dependencies]
@@ -30,6 +29,7 @@ isort = "^5.10.1"
 safety = "^2.3.1"
 devtools = "^0.9.0"
 pytest-mock = "^3.10.0"
+typing-extensions = "^4.4.0"
 
 [build-system]
 requires = ["poetry-core"]

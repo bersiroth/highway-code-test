@@ -34,7 +34,7 @@ test-all-coverage: ## Run test with coverage
 	poetry run pytest --cache-clear --cov-fail-under=90 --no-cov-on-fail --cov=src
 
 type-check: ## Run static type checking
-	MYPYPATH=src poetry run mypy --namespace-packages --explicit-package-bases src tests fixture
+	MYPYPATH=src poetry run mypy --namespace-packages --strict --explicit-package-bases src tests fixture
 
 unused-code: ## Check unused code
 	poetry run autoflake -cd --remove-all-unused-imports --remove-unused-variables -r src tests fixture

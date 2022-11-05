@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import Callable, List
 
 from click.testing import CliRunner, Result
@@ -7,7 +9,7 @@ from highway_code.infrastructure.cli.command import cli
 
 
 def run_command_with_fixture(
-    command_name: str, args: List[str], command_input: str = "", callback: Callable = None
+    command_name: str, args: List[str], command_input: str = "", callback: Callable[[CliRunner], None] | None = None
 ) -> Result:
     runner = CliRunner()
     with runner.isolated_filesystem() as temp_path:

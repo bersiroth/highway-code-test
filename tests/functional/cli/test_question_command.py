@@ -11,7 +11,7 @@ from tests.functional.cli.command_helper import run_command_with_fixture
 
 
 @fixture(scope="session", autouse=True)
-def init_container():
+def init_container() -> None:
     container = Container()
     container.init_resources()
     container.wire(modules=[command])

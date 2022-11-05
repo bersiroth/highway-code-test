@@ -11,30 +11,35 @@ from highway_code.domain.question.exception import (
     EmptyQuestionListException,
 )
 from highway_code.domain.question.manager import QuestionManager
+from highway_code.domain.question.render import (
+    CliRenderQuestion,
+    CliRenderQuestionManager,
+)
+from highway_code.domain.translation.translation import TranslationInterface
 from tests.unit.factory import question_factory_test
 
 
 class MocksStruct(NamedTuple):
-    question_repository: unittest.mock.MagicMock
-    translation: unittest.mock.MagicMock
-    cli_render_question_manager: unittest.mock.MagicMock
-    cli_render_question: unittest.mock.MagicMock
+    question_repository: unittest.mock.Mock
+    translation: unittest.mock.Mock
+    cli_render_question_manager: unittest.mock.Mock
+    cli_render_question: unittest.mock.Mock
 
 
 def get_mocks(mocker: MockerFixture, questions: List[Question]) -> MocksStruct:
-    question_repository_mock = mocker.patch("highway_code.domain.model.question.QuestionRepositoryInterface")
+    question_repository_mock = mocker.Mock()
     question_repository_mock.get_all_question.return_value = questions
     seal(question_repository_mock)
 
-    translation_mock = mocker.patch("highway_code.domain.translation.translation.TranslationInterface")
+    translation_mock = mocker.Mock(spec_set=TranslationInterface)
     translation_mock.load_translation()
     translation_mock.translate.return_value = "translated message"
     seal(translation_mock)
 
-    cli_render_question_manager_mock = mocker.patch("highway_code.domain.question.render.CliRenderQuestionManager")
+    cli_render_question_manager_mock = mocker.Mock(spec_set=CliRenderQuestionManager)
     seal(cli_render_question_manager_mock)
 
-    cli_render_question_mock = mocker.patch("highway_code.domain.question.render.CliRenderQuestion")
+    cli_render_question_mock = mocker.Mock(spec_set=CliRenderQuestion)
     seal(cli_render_question_mock)
 
     return MocksStruct(

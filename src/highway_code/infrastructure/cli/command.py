@@ -14,7 +14,7 @@ from highway_code.infrastructure.containers import Container
 
 
 @click.group()
-def cli():
+def cli() -> None:
     container = Container()
     container.init_resources()
     container.wire(modules=[sys.modules[__name__]])
@@ -47,7 +47,7 @@ def question(
     question_id: int | None,
     country: str,
     question_handler: QuestionHandler = Provide[Container.question_handler],
-):
+) -> None:
     command = QuestionCommand(question_id, country, error_on_failure)
     question_handler.handle(command)
 
@@ -59,7 +59,7 @@ def question(
     help="If you want reset your statistics",
 )
 @inject
-def stats(reset, statistic_handler: StatisticHandler = Provide[Container.statistic_handler]):
+def stats(reset: bool, statistic_handler: StatisticHandler = Provide[Container.statistic_handler]) -> None:
     command = StatisticCommand(reset)
     statistic_handler.handle(command)
 
