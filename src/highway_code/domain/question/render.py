@@ -17,7 +17,7 @@ class CliRenderQuestion:
     def render_title(self, question: Question) -> None:
         self.cli_render.echo("\n\n")
         question_title = self.cli_render.message_color(question.title.principal, "white")
-        size = len(question_title)
+        size = len(question_title) + 15
         try:
             size_terminal = os.get_terminal_size()
             size = size_terminal.columns
@@ -35,7 +35,10 @@ class CliRenderQuestion:
         for key, proposition in enumerate(propositions):
             label = self.cli_render.message_color(question.labels[key], "yellow")
             label_rendered = f"[{label}]"
-            rendered_proposition.append(f"{label_rendered} {proposition.ljust(max_proposition_len, ' ')}")
+            proposition_rendered = proposition
+            if key == 0 or (key == 2 and len(propositions) == 4):
+                proposition_rendered = proposition.ljust(max_proposition_len, " ")
+            rendered_proposition.append(f"{label_rendered} {proposition_rendered}")
 
         sub_title_list = question.title.sub
         if len(sub_title_list) > 0:

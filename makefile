@@ -31,7 +31,7 @@ test-all: ## Run all tests
 	poetry run pytest --cache-clear tests
 
 test-all-coverage: ## Run test with coverage
-	poetry run pytest --cache-clear --cov-fail-under=90 --no-cov-on-fail --cov=src --cov-report=term-missing:skip-covered
+	poetry run pytest --cache-clear --cov-fail-under=100 --no-cov-on-fail --cov=src --cov-report=term-missing:skip-covered
 
 type-check: ## Run static type checking
 	MYPYPATH=src poetry run mypy --namespace-packages --strict --explicit-package-bases src tests fixture
