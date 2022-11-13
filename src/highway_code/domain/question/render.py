@@ -17,12 +17,8 @@ class CliRenderQuestion:
     def render_title(self, question: Question) -> None:
         self.cli_render.echo("\n\n")
         question_title = self.cli_render.message_color(question.title.principal, "white")
-        size = len(question_title) + 15
-        try:
-            size_terminal = os.get_terminal_size()
-            size = size_terminal.columns
-        except OSError:
-            print("get_terminal_size is not supported")
+        size_terminal = os.get_terminal_size()
+        size = size_terminal.columns
         line = "".ljust(size, "-")
         self.cli_render.echo_color(line, "blue")
         self.cli_render.echo_color(f"(Question {question.question_id}) : {question_title}", "blue")
@@ -65,12 +61,8 @@ class CliRenderQuestion:
         self.render_explication(question)
 
     def render_explication(self, question: Question) -> None:
-        size = len(question.explication)
-        try:
-            size_terminal = os.get_terminal_size()
-            size = size_terminal.columns
-        except OSError:
-            print("get_terminal_size is not supported")
+        size_terminal = os.get_terminal_size()
+        size = size_terminal.columns
         line = "".ljust(size, "-")
         self.cli_render.echo_color(line, "cyan")
         self.cli_render.echo_color(question.explication.replace(". ", ".\n"), "cyan")

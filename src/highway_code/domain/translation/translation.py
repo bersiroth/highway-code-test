@@ -4,8 +4,8 @@ from abc import abstractmethod
 class TranslationInterface:
     @abstractmethod
     def translate(self, message: str) -> str:
-        pass
+        """Translate a message"""
 
     @abstractmethod
     def load_translation(self, country: str) -> None:
-        pass
+        """Load a translation"""

@@ -62,7 +62,3 @@ def question(
 def stats(reset: bool, statistic_handler: StatisticHandler = Provide[Container.statistic_handler]) -> None:
     command = StatisticCommand(reset)
     statistic_handler.handle(command)
-
-
-if __name__ == "__main__":
-    cli()

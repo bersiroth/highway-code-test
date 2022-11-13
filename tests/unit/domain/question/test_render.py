@@ -50,9 +50,9 @@ def test_render_title(cli_render_question: CliRenderQuestion, capsys: CaptureFix
     captured = capsys.readouterr()
     expected_render = """\
 
-----------------------------------------------------------------
+--------------------------------------------------------------------------------
 (Question 1) : Les feux de recul d'un véhicule sont de couleur ?
-----------------------------------------------------------------
+--------------------------------------------------------------------------------
 """
     assert expected_render in captured.out
 
@@ -114,9 +114,9 @@ def test_render_explication(cli_render_question: CliRenderQuestion, capsys: Capt
     # Then: I have a good explication render
     captured = capsys.readouterr()
     expected_render = """\
---------------------------------------------------------
+--------------------------------------------------------------------------------
 Les feux de recul d'un véhicule sont de couleur blanche.
---------------------------------------------------------
+--------------------------------------------------------------------------------
 """
     assert expected_render in captured.out
 

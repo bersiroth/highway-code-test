@@ -35,7 +35,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-highway-code = "highway_code.infrastructure.cli.command:start"
+highway-code = "highway_code.infrastructure.cli.command:cli"
 
 [tool.isort]
 profile = "black"

@@ -37,4 +37,4 @@ class Question:
 class QuestionRepositoryInterface:
     @abstractmethod
     def get_all_question(self, country: str) -> List[Question]:
-        pass
+        """Get all question for a country"""
