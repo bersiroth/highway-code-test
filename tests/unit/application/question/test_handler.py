@@ -1,4 +1,4 @@
-from unittest.mock import seal, Mock
+from unittest.mock import Mock, seal
 
 from highway_code.application.question.handler import QuestionCommand, QuestionHandler
 from tests.unit.factory import question_factory_test
