@@ -5,30 +5,43 @@ description = "cli for highway code"
 authors = ["bersiroth <caronbernard1@gmail.com>"]
 readme = "readme.md"
 packages = [
-    { include = "highway_code", from = "src" }
+    { include = "highway_code", from = "src" },
+    { include = "tests", from = "" }
 ]
 
 [tool.poetry.dependencies]
 python = "^3.8"
 click = "^8.1.3"
 python-gettext = "^4.1"
-typing-extensions = "^4.4.0"
+dependency-injector = "^4.40.0"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^5.0.4"
 black = "^22.10.0"
-pytest = "^7.1.3"
+pytest = "^7.2.0"
 freezegun = "^1.2.2"
 mypy = "^0.982"
 pylint = "^2.15.5"
 autoflake = "^1.7.6"
 bandit = "^1.7.4"
 pytest-cov = "^4.0.0"
+isort = "^5.10.1"
+safety = "^2.3.1"
+devtools = "^0.9.0"
+typing-extensions = "^4.4.0"
+coverage = { git = "https://github.com/nedbat/coveragepy.git", branch = "master"}
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-highway-code = "highway_code.command:cli"
+highway-code = "highway_code.infrastructure.cli.command:cli"
 
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]

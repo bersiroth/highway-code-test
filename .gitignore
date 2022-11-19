@@ -6,3 +6,4 @@ data/stats.json
 __pycache__/
 /dist/
 /.coverage
+.pytest_cache/

@@ -1,20 +1,15 @@
-"""
-Test stats logic
-"""
-from test.command_helper import run_command_with_fixture
 from click.testing import CliRunner, Result
 from freezegun import freeze_time
-from highway_code.command import cli
+
+from highway_code.infrastructure.cli.command import cli
+from tests.functional.cli.command_helper import run_command_with_fixture
 
 
 def run_stats_command(with_question: bool = False, question_input: str = "b\nn\n", reset: bool = False) -> Result:
-    """
-    Run stats command with option
-    """
-
-    def callback(runner: CliRunner):
+    def callback(runner: CliRunner) -> None:
         if with_question:
-            runner.invoke(cli, ["question"], input=question_input)
+            result = runner.invoke(cli, ["question"], input=question_input)
+            print(result.output)
 
     args = []
     if reset:
@@ -23,9 +18,6 @@ def run_stats_command(with_question: bool = False, question_input: str = "b\nn\n
 
 
 def test_stats_command() -> None:
-    """
-    Test standard stats command (without question)
-    """
     # When : I run stats command with input
     result = run_stats_command()
     # Then : Command has no error and I have good stats
@@ -40,9 +32,6 @@ def test_stats_command() -> None:
 
 @freeze_time("2012-09-20")
 def test_stats_command_after_question() -> None:
-    """
-    Test stats command after question
-    """
     # Given : I have correctly answered to a question
     answered_to_a_question = True
     question_input = "b\nn\n"
@@ -60,9 +49,6 @@ def test_stats_command_after_question() -> None:
 
 @freeze_time("2012-09-20")
 def test_stats_command_with_reset_after_question() -> None:
-    """
-    Test stats command after question with reset option
-    """
     # Given : I have correctly answered to a question
     answered_to_a_question = True
     question_input = "b\nn\n"

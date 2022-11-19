@@ -1,5 +1,5 @@
 line_length = 120
-coding_style_command = poetry run black -l $(line_length) src test fixture
+coding_style_command = poetry run black -l $(line_length) src tests fixture
 
 .PHONY: help code_style code_style_fix linter test ci question stats type-check unused-code
 
@@ -14,29 +14,63 @@ code-style: ## Check code style
 code-style-fix: ## Fix code style
 	$(coding_style_command)
 
+import: ## Check import
+	poetry run isort --check --diff src tests fixture
+
+import-fix: ## Fix import
+	poetry run isort src tests fixture
+
 linter: ## Check code linter
-	poetry run flake8 --max-line-length $(line_length) --max-complexity 5 src test fixture
-	poetry run pylint --max-line-length $(line_length) src test fixture
+	poetry run flake8 --max-line-length $(line_length) --max-complexity 8 src tests fixture
+	poetry run pylint --max-line-length $(line_length) --rcfile=.pylintrc src tests fixture
 
-test: ## Run test
-	poetry run pytest --cache-clear
+test-unit: ## Run unit tests
+	poetry run pytest --cache-clear tests/unit
 
-test-coverage: ## Run test with coverage
-	poetry run pytest --cache-clear --cov-fail-under=90 --no-cov-on-fail --cov=src/highway_code
+test-functional: ## Run functional tests
+	poetry run pytest --cache-clear tests/functional
+
+test-all: ## Run all tests
+	poetry run pytest --cache-clear tests
+
+test-functional-coverage: ## Run functional tests
+	poetry run coverage run --include='src/highway_code/infrastructure/cli/*,src/highway_code/infrastructure/containers.py' --rcfile=.coveragerc -m pytest --cache-clear tests/functional
+	make coverage-report
+
+test-unit-coverage: ## Run unit test with coverage
+	poetry run coverage run --source=src --omit='src/highway_code/infrastructure/cli/*,src/highway_code/infrastructure/persistence/*,src/highway_code/infrastructure/containers.py' --rcfile=.coveragerc -m pytest --cache-clear tests/unit
+	make coverage-report
+
+coverage-report: ## Generate coverage report
+	poetry run coverage report -m --skip-covered --fail-under=100
 
 type-check: ## Run static type checking
-	MYPYPATH=src poetry run mypy --namespace-packages --explicit-package-bases src test fixture
+	MYPYPATH=src poetry run mypy --namespace-packages --strict --explicit-package-bases src tests fixture
 
 unused-code: ## Check unused code
-	poetry run autoflake -cd --remove-all-unused-imports --remove-unused-variables -r src test fixture
+	poetry run autoflake -cd --remove-all-unused-imports --remove-unused-variables -r src tests fixture
 
 unused-code-fix: ## Fix unused code
-	poetry run autoflake -i --remove-all-unused-imports --remove-unused-variables -r src test fixture
+	poetry run autoflake -i --remove-all-unused-imports --remove-unused-variables -r src tests fixture
 
 security-issue: ## Check security issue
 	poetry run bandit -ril src
 
-ci: code-style unused-code security-issue linter type-check test-coverage ## Run CI test
+security-dependency: ## Check dependency security issue
+	poetry run pip freeze | poetry run safety check --stdin
+
+ci: code-style ## Run CI test
+ci: unused-code
+ci: security-dependency
+ci: security-issue
+ci: import
+ci: linter
+ci: type-check
+ci: test-all-coverage
+
+fix: code-style-fix ## fix code base
+fix: import-fix
+fix: unused-code-fix
 
 update-translation: ## Update translation file
 	xgettext -d base -o locales/base.pot src/*.py

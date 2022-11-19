@@ -13,6 +13,16 @@ jobs:
         run: |
           make code-style
 
+  import:
+    name: Check import
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-python
+      - name: Check import
+        run: |
+          make import
+
   unused-code:
     name: Check unused code
     runs-on: ubuntu-latest
@@ -32,6 +42,16 @@ jobs:
       - name: Check code style
         run: |
           make security-issue
+
+  security-dependency:
+    name: Check security dependency
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-python
+      - name: Check security dependency
+        run: |
+          make security-dependency
 
   linter:
     name: Check code linter
@@ -53,12 +73,15 @@ jobs:
         run: |
           make type-check
 
-  test:
-    name: Run test
+  tests:
+    name: Run all tests with coverage
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-python
-      - name: Run test
+      - name: Run unit tests with coverage
         run: |
-          make test-coverage
+          make test-unit-coverage
+      - name: Run functional tests with coverage
+        run: |
+          make test-functional-coverage
