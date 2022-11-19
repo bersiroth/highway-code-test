@@ -24,14 +24,25 @@ linter: ## Check code linter
 	poetry run flake8 --max-line-length $(line_length) --max-complexity 8 src tests fixture
 	poetry run pylint --max-line-length $(line_length) --rcfile=.pylintrc src tests fixture
 
+test-unit: ## Run unit tests
+	poetry run pytest --cache-clear tests/unit
+
 test-functional: ## Run functional tests
 	poetry run pytest --cache-clear tests/functional
 
 test-all: ## Run all tests
 	poetry run pytest --cache-clear tests
 
-test-all-coverage: ## Run test with coverage
-	poetry run pytest --cache-clear --cov-fail-under=100 --no-cov-on-fail --cov=src --cov-report=term-missing:skip-covered
+test-functional-coverage: ## Run functional tests
+	poetry run coverage run --include='src/highway_code/infrastructure/cli/*,src/highway_code/infrastructure/containers.py' --rcfile=.coveragerc -m pytest --cache-clear tests/functional
+	make coverage-report
+
+test-unit-coverage: ## Run unit test with coverage
+	poetry run coverage run --source=src --omit='src/highway_code/infrastructure/cli/*,src/highway_code/infrastructure/persistence/*,src/highway_code/infrastructure/containers.py' --rcfile=.coveragerc -m pytest --cache-clear tests/unit
+	make coverage-report
+
+coverage-report: ## Generate coverage report
+	poetry run coverage report -m --skip-covered --fail-under=100
 
 type-check: ## Run static type checking
 	MYPYPATH=src poetry run mypy --namespace-packages --strict --explicit-package-bases src tests fixture

@@ -29,6 +29,7 @@ isort = "^5.10.1"
 safety = "^2.3.1"
 devtools = "^0.9.0"
 typing-extensions = "^4.4.0"
+coverage = { git = "https://github.com/nedbat/coveragepy.git", branch = "master"}
 
 [build-system]
 requires = ["poetry-core"]
@@ -39,3 +40,8 @@ highway-code = "highway_code.infrastructure.cli.command:cli"
 
 [tool.isort]
 profile = "black"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
